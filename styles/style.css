@@ -1,0 +1,384 @@
+body {
+    margin: 0;
+    background-color: #000121;
+    color: white;
+    font-family: Montserrat;
+    height: 100vh;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../font/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-black;
+    src: url(../font/Montserrat-Black.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-bold;
+    src: url(../font/Montserrat-Bold.ttf);
+}
+
+html,
+main {
+    overflow: hidden;
+}
+
+main {
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    overflow-y: unset;
+}
+
+img {
+    width: 100%;
+}
+
+header {
+    border-bottom: solid #F6FF00 1px;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    z-index: 5;
+    background-color: #000121; */
+}
+
+.ContenuHeader {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+header>div {
+    display: flex;
+}
+
+.LoL {
+    font-family: Montserrat-bold;
+}
+
+.HeaderLogo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.HeaderCategories {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.CompteurCategories {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.PartieGauche {
+    grid-column: 1;
+    background-color: #000212;
+    border-right: solid #F6FF00 1px;
+    /* position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    height: 90%;
+    z-index: 2; */
+}
+
+.GraphRole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-15%);
+}
+
+.Tarte {
+    transform: scale(200%);
+}
+
+.MouleATarte {
+    border: solid #F6FF00 1px;
+    border-radius: 100%;
+    transform: translateY(50%);
+    background-color: #000212;
+}
+
+.ContenuPartieGauche {
+    width: 90%;
+    margin: auto;
+}
+
+.CompteurRoleGlobal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border: solid #F6FF00 1px;
+    gap: 16px;
+    padding: 126px 16px 0px 16px;
+}
+
+.CompteurRole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    gap: 16px;
+    text-align: center;
+}
+
+.RondRole {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}
+
+.CompteurRole:nth-child(1) .RondRole {
+    background-color: #17C100;
+}
+
+.CompteurRole:nth-child(2) .RondRole {
+    background-color: #D8D800;
+}
+
+.CompteurRole:nth-child(3) .RondRole {
+    background-color: #D78400;
+}
+
+.CompteurRole:nth-child(4) .RondRole {
+    background-color: #B300EF;
+}
+
+.CompteurRole:nth-child(5) .RondRole {
+    background-color: #CE0000;
+}
+
+.CompteurRole:nth-child(6) .RondRole {
+    background-color: #008CE3;
+}
+
+.FiltrageRole {
+    background-color: #565656;
+    color: white;
+    border: solid #F6FF00 1px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* .FiltreurRoleGlobal {
+    padding: 16px;
+} */
+
+.PropositionRoleGlobalActive {
+    display: flex;
+    flex-direction: column;
+}
+
+.PropositionRole {
+    background-color: #7A7A7A;
+    border-bottom: solid black 1px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.TitreFiltrageRole {
+    margin-bottom: 16px;
+}
+
+.PartieCentre {
+    grid-column: 2;
+    height: 100vh;
+}
+
+.ContenuPartieCentre {
+    width: 90%;
+    margin: auto;
+}
+
+.TitrePartieCentre {
+    font-family: Montserrat-bold;
+}
+
+.PartieCentreLogo {
+    display: flex;
+    gap: 16px;
+}
+
+.SousTitrePartieCentre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ImageFiltreur {
+    display: flex;
+    align-items: center;
+}
+
+.EnleverImageFiltreur {
+    opacity: 25%;
+}
+
+.PartieCentreQuiBougePas {
+    border-bottom: solid #F6FF00 1px;
+    background-color: #000121;
+    padding-bottom: 32px;
+    padding-top: 32px;
+    margin-bottom: 16px;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 55%;
+    height: 10%;
+    z-index: 2;
+    margin: auto;
+    transform: translateY(100%) translateY(-64px); */
+}
+
+/* 
+.ScrollHere {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 10%;
+    z-index: 1;
+    margin: auto;
+    transform: translateY(15%);
+} */
+
+.ScrollHere {
+    overflow: auto;
+    height: 580px;
+}
+
+.image {
+    /* overflow-y: auto;
+    max-height: 100vh; */
+    height: 100%;
+    display: flex;
+    gap: 32px;
+    flex-flow: row wrap;
+    /* display: grid; */
+    /* grid-template-columns: repeat(8, 1fr); */
+}
+
+.personnage {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.PartieDroite {
+    grid-column: 3;
+    background-color: #000212;
+    border-left: solid #F6FF00 1px;
+    /* position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    height: 90%;
+    z-index: 2; */
+}
+
+.PartieDroiteContenu {
+    width: 90%;
+    margin: auto;
+}
+
+.PartieDroiteTitre {
+    font-family: Montserrat-bold;
+    margin-top: 64px;
+    margin-bottom: 64px;
+}
+
+.MoyenneDesStats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.personnage>img {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.stats {
+    display: none;
+}
+
+.afficher{
+    display: flex;
+    flex-direction: column;
+    /* grid-column: 1 span 7; */
+}
+
+.afficher>.stats {
+    display: block;
+}
+
+.ComparaisonStat {
+    display: none;
+}
+
+.afficher>.ComparaisonStat {
+    display: block;
+}
+
+.UneBarre {
+    width: 15px;
+    background-color: green;
+}
+
+.UneBarre2 {
+    width: 15px;
+    background-color: red;
+    border-bottom: black solid 5px;
+    transform: rotate(180deg);
+}
+
+/* .LaBase{
+    position: absolute;
+} */
+
+.LaBranche {
+    /* position: relative; */
+    stroke-dasharray: 1 99;
+    transition: 0.4s;
+}
+
+.LaBranche:hover {
+    stroke-dasharray: 100;
+}
+
+svg {
+    width: 100%;
+}
+
+.LaBranche2 {
+    transform: translateY(-100%);
+}
