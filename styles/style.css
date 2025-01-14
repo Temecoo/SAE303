@@ -333,7 +333,7 @@ main {
 
 .afficher{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* grid-column: 1 span 7; */
 }
 

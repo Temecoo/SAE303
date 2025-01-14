@@ -2,6 +2,11 @@ var sommes = {};
 let DirectionFlecheFiltrageRole = "BAS";
 let nbChampions = 0;
 var RoleSelectionne = "";
+let TopLane = "FALSE";
+let Jungle = "FALSE";
+let MidLane = "FALSE";
+let BotLane = "FALSE";
+let Support = "FALSE";
 
 
 console.log(champions);
@@ -90,7 +95,7 @@ StatM.push({ hp, hpperlevel, mp, mpperlevel, movespeed, armor, armorperlevel, sp
 console.log(hp)
 console.log(StatM[0])
 
-
+// REVIENS ICI QUAND TU VEUX VOIR COMMENT TU INITIALISE L'AFFICHAGE DES PERSO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function start() {
     document.querySelector(".image").innerHTML = ""
     champions.forEach(champion => {
@@ -118,55 +123,55 @@ function start() {
     // document.querySelector(".EnleverImageFiltreur").classList.remove("EnleverImageFiltreur")
     if (RoleSelectionne == "") {
         console.log((document.querySelector(".PartieCentreLogo").children[1]))
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 100%;"
     }
     else if (RoleSelectionne == "Tank") {
         console.log((document.querySelector(".PartieCentreLogo").children[1]))
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
     else if (RoleSelectionne == "Support") {
         console.log((document.querySelector(".PartieCentreLogo").children[1]))
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 100%;"
     }
     else if (RoleSelectionne == "Mage") {
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
     else if (RoleSelectionne == "Assassin") {
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
     else if (RoleSelectionne == "Fighter") {
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
     else if (RoleSelectionne == "Marksman") {
-        document.querySelector(".PartieCentreLogo").children[0].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[1].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[2].style="opacity: 25%;"
-        document.querySelector(".PartieCentreLogo").children[3].style="opacity: 100%;"
-        document.querySelector(".PartieCentreLogo").children[4].style="opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
     ensuite();
 };
@@ -181,7 +186,57 @@ start();
 
 
 function htmlStats(champion) {
-    let output = "";
+    TopLane = "FALSE";
+    Jungle = "FALSE";
+    MidLane = "FALSE";
+    BotLane = "FALSE";
+    Support = "FALSE";
+    output = "";
+    output = "<div>" + champion.name + "</div><div>" + champion.title + "</div><div>" + champion["tags"] + "</div>";
+    if (champion["tags"].includes("Tank") && TopLane == "FALSE") {
+        output += "<img src='img/Top lane.png' alt='Logo de la top lane'>"
+        TopLane = "TRUE"
+    }
+    if (champion["tags"].includes("Support")) {
+        if (Support == "FALSE") {
+            output += "<img src='img/Support.png' alt='Logo des supports'>"
+            Support = "TRUE"
+        }
+    }
+    if (champion["tags"].includes("Mage")) {
+        if (MidLane == "FALSE") {
+            output += "<img src='img/Mid lane.png' alt='Logo de la mid lane'>"
+            MidLane = "TRUE"
+        }
+        if (BotLane == "FALSE") {
+            output += "<img src='img/Bot lane.png' alt='Logo de la bot lane'>"
+            BotLane = "TRUE"
+        }
+    }
+    if (champion["tags"].includes("Assassin")) {
+        if (Jungle == "FALSE") {
+            output += "<img src='img/Jungle.png' alt='Logo de la jungle'>"
+            Jungle = "TRUE"
+        }
+        if (MidLane == "FALSE") {
+            output += "<img src='img/Mid lane.png' alt='Logo de la mid lane'>"
+            MidLane = "TRUE"
+        }
+    }
+    if (champion["tags"].includes("Fighter")) {
+        if (TopLane == "FALSE") {
+            output += "<img src='img/Top lane.png' alt='Logo de la top lane'>"
+            TopLane = "TRUE"
+        }
+        if (Jungle == "FALSE") {
+            output += "<img src='img/Jungle.png' alt='Logo de la jungle'>"
+            Jungle = "TRUE"
+        }
+    }
+    if (champion["tags"].includes("Marksman") && BotLane == "FALSE") {
+        output += "<img src='img/Bot lane.png' alt='Logo de la bot lane'>"
+        BotLane = "TRUE"
+    }
     Object.entries(champion.stats).forEach(([key, value]) => {
         output += "<div>" + key + ":" + value + "</div>"
     })
