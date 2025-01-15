@@ -192,51 +192,57 @@ function htmlStats(champion) {
     BotLane = "FALSE";
     Support = "FALSE";
     output = "";
-    output = "<div>" + champion.name + "</div><div>" + champion.title + "</div><div>" + champion["tags"] + "</div>";
+    output = "<div class='InformationPersonnageSelectionne'><h2 class='NomPersonnageSelectionne'>" + champion.name + "</h2><div>" + champion.title + "</div><h3 class='ClassePersonnageSelectionne'>Role</h3><div class='RolePersonnageSelectionne'>";
     if (champion["tags"].includes("Tank") && TopLane == "FALSE") {
-        output += "<img src='img/Top lane.png' alt='Logo de la top lane'>"
+        output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Top lane.png' alt='Logo de la top lane'></div>"
         TopLane = "TRUE"
     }
     if (champion["tags"].includes("Support")) {
         if (Support == "FALSE") {
-            output += "<img src='img/Support.png' alt='Logo des supports'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Support.png' alt='Logo des supports'></div>"
             Support = "TRUE"
         }
     }
     if (champion["tags"].includes("Mage")) {
         if (MidLane == "FALSE") {
-            output += "<img src='img/Mid lane.png' alt='Logo de la mid lane'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Mid lane.png' alt='Logo de la mid lane'></div>"
             MidLane = "TRUE"
         }
         if (BotLane == "FALSE") {
-            output += "<img src='img/Bot lane.png' alt='Logo de la bot lane'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Bot lane.png' alt='Logo de la bot lane'></div>"
             BotLane = "TRUE"
         }
     }
     if (champion["tags"].includes("Assassin")) {
         if (Jungle == "FALSE") {
-            output += "<img src='img/Jungle.png' alt='Logo de la jungle'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Jungle.png' alt='Logo de la jungle'></div>"
             Jungle = "TRUE"
         }
         if (MidLane == "FALSE") {
-            output += "<img src='img/Mid lane.png' alt='Logo de la mid lane'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Mid lane.png' alt='Logo de la mid lane'></div>"
             MidLane = "TRUE"
         }
     }
     if (champion["tags"].includes("Fighter")) {
         if (TopLane == "FALSE") {
-            output += "<img src='img/Top lane.png' alt='Logo de la top lane'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Top lane.png' alt='Logo de la top lane'></div>"
             TopLane = "TRUE"
         }
         if (Jungle == "FALSE") {
-            output += "<img src='img/Jungle.png' alt='Logo de la jungle'>"
+            output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Jungle.png' alt='Logo de la jungle'></div>"
             Jungle = "TRUE"
         }
     }
     if (champion["tags"].includes("Marksman") && BotLane == "FALSE") {
-        output += "<img src='img/Bot lane.png' alt='Logo de la bot lane'>"
+        output += "<div class='RoleGlobalPersonnageSelectionne'><img src='img/Bot lane.png' alt='Logo de la bot lane'></div>"
         BotLane = "TRUE"
     }
+    output += "</div><h3 class='ClassePersonnageSelectionne'>Catégorie</h3><div>"
+    champion["tags"].forEach(Categories => {
+        output += "<p>" + Categories + "</p>"
+    });
+    output += "</div></div>"
+
     Object.entries(champion.stats).forEach(([key, value]) => {
         output += "<div>" + key + ":" + value + "</div>"
     })

@@ -273,6 +273,27 @@ main {
 .ScrollHere {
     overflow: auto;
     height: 580px;
+    scrollbar-color: #F6FF00 #000121;
+    scrollbar-width: thin;
+    margin-left: 16px;
+}
+
+.NomPersonnageSelectionne {
+    font-family: Montserrat-black;
+}
+
+.ClassePersonnageSelectionne {
+    font-family: Montserrat-bold;
+}
+
+.RolePersonnageSelectionne{
+    display: flex;
+    height: 32px;
+    gap: 8px;
+}
+
+.RolePersonnageSelectionne{
+    width: 100%;
 }
 
 .image {
@@ -282,6 +303,7 @@ main {
     display: flex;
     gap: 32px;
     flex-flow: row wrap;
+    justify-content: center;
     /* display: grid; */
     /* grid-template-columns: repeat(8, 1fr); */
 }
@@ -331,7 +353,7 @@ main {
     display: none;
 }
 
-.afficher{
+.afficher {
     display: flex;
     /* flex-direction: column; */
     /* grid-column: 1 span 7; */
