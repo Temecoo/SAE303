@@ -349,7 +349,7 @@ main {
     background-color: red;
 }
 
-.stats {
+.ChoixSelectionPersonnage {
     display: none;
 }
 
@@ -359,8 +359,8 @@ main {
     /* grid-column: 1 span 7; */
 }
 
-.afficher>.stats {
-    display: block;
+.afficher>.ChoixSelectionPersonnage {
+    display: flex;
 }
 
 .ComparaisonStat {
@@ -369,6 +369,11 @@ main {
 
 .afficher>.ComparaisonStat {
     display: block;
+}
+
+.TitreBarreGraphique{
+    
+    fill: blue;
 }
 
 .UneBarre {

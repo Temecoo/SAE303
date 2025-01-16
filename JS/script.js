@@ -104,13 +104,10 @@ function start() {
             document.querySelector(".image").innerHTML += `
             <div class='personnage'>
             <img class='${champion["name"]}' src='${champion["icon"]}'></img>
-            <div class='stats'>
+            <div class='ChoixSelectionPersonnage'>
                 ${htmlStats(champion)}
             </div>
             <div class='ComparaisonStat'>
-                <div class='TexteStat'>
-                    ${DifferenceStats(champion)}
-                </div>
                 <div class='GraphiqueStat>
                     ${DifferenceGraphique(champion)}
 
@@ -118,6 +115,12 @@ function start() {
             </div>
         </div>`;
         }
+
+        // <div class='TexteStat'>
+        //             ${DifferenceStats(champion)}
+        //         </div>
+
+
         //champion.Affichage = "FALSE"
     });
     // document.querySelector(".EnleverImageFiltreur").classList.remove("EnleverImageFiltreur")
@@ -241,11 +244,12 @@ function htmlStats(champion) {
     champion["tags"].forEach(Categories => {
         output += "<p>" + Categories + "</p>"
     });
-    output += "</div></div>"
+    output += "</div></div><div class='stats'>"
 
     Object.entries(champion.stats).forEach(([key, value]) => {
         output += "<div>" + key + ":" + value + "</div>"
     })
+    output += "</div>"
     return output;
 }
 
@@ -286,9 +290,12 @@ function DifferenceGraphique(champion) {
         console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
         if (Math.round(value - valeur) > 0) {
             zqsd += "<path d='M3 394V0' stroke='#00FF37' stroke-width='5' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (10 + 4 * compteur) + "%);'/>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='16px' style='transform: translateX(" + (10 + 4 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
         }
         else if (Math.round(value - valeur) < 0) {
             zqsd += "<path d='M3 394V394 788' stroke='#FF0000' stroke-width='5' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (10 + 4 * compteur) + "%);'/>"
+            zqsd += "<text x='0' y='808' font-family='Montserrat' font-size='16px' fill='red' style='transform: translateX(" + (10 + 4 * compteur) + "%);'>" + key + "</text>"
+
         }
         // else if (Math.round(value - valeur) == 0) {
         //     zqsd += "<div class=" + key + ">La stat de <b>" + key + "</b> est pile à la moyenne : " + (Math.round(value - valeur)) + "</div>"
