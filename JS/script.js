@@ -9,19 +9,19 @@ let BotLane = "FALSE";
 let Support = "FALSE";
 
 
-console.log(champions);
-console.log(champions[1]["name"]);
-console.log(champions[1]["stats"]["mp"]);
+//console.log(champions);
+//console.log(champions[1]["name"]);
+//console.log(champions[1]["stats"]["mp"]);
 
 champions.forEach(champions => {
-    console.log(champions["name"])
+    //console.log(champions["name"])
 
     if (champions["name"] == "Zyra") {
-        console.log(champions["tags"])
+        //console.log(champions["tags"])
     }
 });
 
-// console.log(champions[1]["name"]);
+// //console.log(champions[1]["name"]);
 // document.querySelector(".image").innerHTML+="<img src='"+champions[1]["icon"]+"'></img>";
 MoyenneStats()
 
@@ -37,11 +37,11 @@ function MoyenneStats() {
             }
         })
     })
-    console.log(sommes);
+    //console.log(sommes);
     Object.entries(sommes).forEach(([stat, valeur]) => {
         sommes[stat] = Math.round(valeur / nbChampions);
     })
-    console.log(sommes);
+    //console.log(sommes);
     Object.entries(sommes).forEach(([stat, valeur]) => {
         document.querySelector(".MoyenneDesStats").innerHTML += "<div class=" + stat + ">" + stat + " : " + valeur + "</div>"
     })
@@ -54,13 +54,13 @@ function MoyenneStats() {
             let Table = []
             // Table.push(champions["stats"])
             Table.push(statistique["stats"].hp)
-            console.log(Table)
+            //console.log(Table)
             let somme = Table.reduce(additionner)
             MoyenneStats = somme / Table.length
             MoyenneStats = Math.round(MoyenneStats)
-            console.log(MoyenneStats)
+            //console.log(MoyenneStats)
         })
-        // console.log(champions["stats"]["hp"])
+        // //console.log(champions["stats"]["hp"])
 
     document.querySelectorAll(".personnage").forEach(e => {
         e.addEventListener('click', ComparerHP)
@@ -92,16 +92,16 @@ var attackspeed = sommes.attackspeed
 
 StatM.push({ hp, hpperlevel, mp, mpperlevel, movespeed, armor, armorperlevel, spellblock, spellblockperlevel, attackrange, hpregen, hpregenperlevel, mpregen, mpregenperlevel, crit, critperlevel, attackdamage, attackdamageperlevel, attackspeedperlevel, attackspeed })
 
-console.log(hp)
-console.log(StatM[0])
+//console.log(hp)
+//console.log(StatM[0])
 
 // REVIENS ICI QUAND TU VEUX VOIR COMMENT TU INITIALISE L'AFFICHAGE DES PERSO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function start() {
-    document.querySelector(".image").innerHTML = ""
+    let output = "";
     champions.forEach(champion => {
-        console.log(champion["tags"]);
+        //console.log(champion["tags"]);
         if (champion["tags"].includes(RoleSelectionne) || RoleSelectionne == "") {
-            document.querySelector(".image").innerHTML += `
+            output += `
             <div class='personnage'>
             <img class='${champion["name"]}' src='${champion["icon"]}'></img>
             <div class='ChoixSelectionPersonnage'>
@@ -123,9 +123,10 @@ function start() {
 
         //champion.Affichage = "FALSE"
     });
+    document.querySelector(".image").innerHTML = output;
     // document.querySelector(".EnleverImageFiltreur").classList.remove("EnleverImageFiltreur")
     if (RoleSelectionne == "") {
-        console.log((document.querySelector(".PartieCentreLogo").children[1]))
+        //console.log((document.querySelector(".PartieCentreLogo").children[1]))
         document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
         document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
         document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
@@ -133,7 +134,7 @@ function start() {
         document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 100%;"
     }
     else if (RoleSelectionne == "Tank") {
-        console.log((document.querySelector(".PartieCentreLogo").children[1]))
+        //console.log((document.querySelector(".PartieCentreLogo").children[1]))
         document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
         document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
         document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
@@ -141,7 +142,7 @@ function start() {
         document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
     else if (RoleSelectionne == "Support") {
-        console.log((document.querySelector(".PartieCentreLogo").children[1]))
+        //console.log((document.querySelector(".PartieCentreLogo").children[1]))
         document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
         document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
         document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
@@ -256,7 +257,7 @@ function htmlStats(champion) {
 
 function DifferenceStats(champion) {
     let tre = "";
-    console.log("hhhhhhhhhhhhhhhhhhhhhhh" + sommes);
+    //console.log("hhhhhhhhhhhhhhhhhhhhhhh" + sommes);
     // document.querySelector(".ComparaisonStat").innerHTML += "<div class='GraphiqueStat'>    <svg width='1234' height='788' viewBox='0 0 1234 788' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M0 394L1234 394' stroke='#E3E300' stroke-width='5' /></svg></div>"
     Object.entries(champion.stats).forEach(([key, value]) => {
         valeur = sommes[key];
@@ -279,15 +280,15 @@ function DifferenceStats(champion) {
 
 function DifferenceGraphique(champion) {
     let zqsd = "";
-    console.log("hhhhhhhhhhhhhhhhhhhhhhh" + sommes);
+    //console.log("hhhhhhhhhhhhhhhhhhhhhhh" + sommes);
     let compteur = 0;
     zqsd += "<div class='GraphiqueStat'>    <svg width='1234' height='788' viewBox='0 0 1234 788' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M0 394L1234 394' stroke='#E3E300' stroke-width='5' />"
     Object.entries(champion.stats).forEach(([key, value]) => {
         valeur = sommes[key];
         //Object.entries(StatM[0]).forEach(([stat, valeur])=>{
         //   if(key == stat){
-        console.log(Math.abs(value - valeur) * 100 / valeur)
-        console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
+        //console.log(Math.abs(value - valeur) * 100 / valeur)
+        //console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
         if (Math.round(value - valeur) > 0) {
             zqsd += "<path d='M3 394V0' stroke='#00FF37' stroke-width='5' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (10 + 4 * compteur) + "%);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='16px' style='transform: translateX(" + (10 + 4 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
@@ -308,10 +309,10 @@ function DifferenceGraphique(champion) {
     return zqsd;
 }
 
-console.log(champions[0].stats.hp)
+//console.log(champions[0].stats.hp)
 
 function ensuite() {
-    console.log("non");
+    //console.log("non");
     document.querySelectorAll(".personnage").forEach(e => {
         e.addEventListener('click', nom2)
     });
@@ -330,19 +331,19 @@ function nom2() {
 
 // function nom() {
 //     let parent = this.childNodes[0].className
-//     console.log(parent)
-//     // console.log(champions[1]["stats"])
+//     //console.log(parent)
+//     // //console.log(champions[1]["stats"])
 //     document.querySelectorAll(".stats").forEach(s => {
 //         s.innerHTML = ""
 //     })
 //     champions.forEach(test => {
-//         // console.log(test["name"])
+//         // //console.log(test["name"])
 //         if (parent == test["name"]) {
-//             console.log(test["stats"])
-//             console.log(test.Affichage)
+//             //console.log(test["stats"])
+//             //console.log(test.Affichage)
 //             if (test.Affichage == "FALSE") {
 //                 Object.entries(test.stats).forEach(([key, value]) => {
-//                     console.log(`${key}: ${value}`);
+//                     //console.log(`${key}: ${value}`);
 //                     this.querySelector(".stats").innerHTML += "<div>" + key + ":" + value + "</div>"
 //                 })
 //                 test.Affichage = "TRUE"
@@ -350,7 +351,7 @@ function nom2() {
 
 //             else if (test.Affichage == "TRUE") {
 //                 Object.entries(test.stats).forEach(([key, value]) => {
-//                     console.log(`${key}: ${value}`);
+//                     //console.log(`${key}: ${value}`);
 //                     this.querySelector(".stats").innerHTML = ""
 //                 })
 //                 test.Affichage = "FALSE"
@@ -383,14 +384,14 @@ MoyenneHP()
 function MoyenneHP() {
     let TableHP = []
     champions.forEach(champions => {
-        // console.log(champions["stats"]["hp"])
+        // //console.log(champions["stats"]["hp"])
         TableHP.push(champions["stats"]["hp"])
-        console.log(TableHP)
+        //console.log(TableHP)
     })
     let sommeHP = TableHP.reduce(additionner)
     MoyenneHP = sommeHP / TableHP.length
     MoyenneHP = Math.round(MoyenneHP)
-    console.log(MoyenneHP)
+    //console.log(MoyenneHP)
 
     document.querySelectorAll(".personnage").forEach(e => {
         e.addEventListener('click', ComparerHP)
@@ -404,13 +405,13 @@ function additionner(first, nombre) {
 
 function ComparerHP() {
     let parent = this.childNodes[1].className
-    console.log(parent)
+    //console.log(parent)
     champions.forEach(RecupereStats => {
         if (parent == RecupereStats["name"]) {
             let MesHP = RecupereStats["stats"]["hp"]
-            console.log(MesHP)
+            //console.log(MesHP)
             MesHP = MesHP - MoyenneHP
-            console.log(MesHP)
+            //console.log(MesHP)
 
         }
     })
@@ -433,7 +434,7 @@ function Categorie() {
     NombreSupport = 0
     NombreMarksman = 0
     champions.forEach(perso => {
-        // console.log(perso["tags"])
+        // //console.log(perso["tags"])
         Object.entries(perso["tags"]).forEach(h => {
             if (h[1] == "Tank") {
                 NombreTank++
@@ -462,29 +463,29 @@ function Categorie() {
     document.querySelector(".HeaderCategories").children[3].children[1].innerText = "Bot lane : " + (NombreMage + NombreMarksman) + "";
     document.querySelector(".HeaderCategories").children[4].children[1].innerText = "Support : " + NombreSupport + "";
 
-    console.log(TableCategorie)
+    //console.log(TableCategorie)
     let NombreCategorie = NombreTank + NombreFighter + NombreMage + NombreAssassin + NombreSupport + NombreMarksman
-    console.log("Nombre de categories : " + NombreCategorie)
-    console.log("Nombre de tank : " + NombreTank)
-    console.log("Nombre de fighter : " + NombreFighter)
-    console.log("Nombre de mage : " + NombreMage)
-    console.log("Nombre d'assassin : " + NombreAssassin)
-    console.log("Nombre de support : " + NombreSupport)
-    console.log("Nombre de marksman : " + NombreMarksman)
+    //console.log("Nombre de categories : " + NombreCategorie)
+    //console.log("Nombre de tank : " + NombreTank)
+    //console.log("Nombre de fighter : " + NombreFighter)
+    //console.log("Nombre de mage : " + NombreMage)
+    //console.log("Nombre d'assassin : " + NombreAssassin)
+    //console.log("Nombre de support : " + NombreSupport)
+    //console.log("Nombre de marksman : " + NombreMarksman)
     let PourcentageTank = NombreTank / NombreCategorie * 100
     let PourcentageFighter = NombreFighter / NombreCategorie * 100
     let PourcentageMage = NombreMage / NombreCategorie * 100
     let PourcentageAssassin = NombreAssassin / NombreCategorie * 100
     let PourcentageSupport = NombreSupport / NombreCategorie * 100
     let PourcentageMarksman = NombreMarksman / NombreCategorie * 100
-    console.log("Les tanks représentent : " + PourcentageTank + "% des personnages du jeu")
-    console.log("Les fighters représentent : " + PourcentageFighter + "% des personnages du jeu")
-    console.log("Les mages représentent : " + PourcentageMage + "% des personnages du jeu")
-    console.log("Les assassins représentent : " + PourcentageAssassin + "% des personnages du jeu")
-    console.log("Les supports représentent : " + PourcentageSupport + "% des personnages du jeu")
-    console.log("Les marksmans représentent : " + PourcentageMarksman + "% des personnages du jeu")
+    //console.log("Les tanks représentent : " + PourcentageTank + "% des personnages du jeu")
+    //console.log("Les fighters représentent : " + PourcentageFighter + "% des personnages du jeu")
+    //console.log("Les mages représentent : " + PourcentageMage + "% des personnages du jeu")
+    //console.log("Les assassins représentent : " + PourcentageAssassin + "% des personnages du jeu")
+    //console.log("Les supports représentent : " + PourcentageSupport + "% des personnages du jeu")
+    //console.log("Les marksmans représentent : " + PourcentageMarksman + "% des personnages du jeu")
     let PourcentageTotal = PourcentageTank + PourcentageFighter + PourcentageMage + PourcentageAssassin + PourcentageSupport + PourcentageMarksman
-    console.log("Test que tout les % font bien 100% : " + PourcentageTotal)
+    //console.log("Test que tout les % font bien 100% : " + PourcentageTotal)
 
     document.querySelector(".CompteurRoleGlobal").children[0].innerHTML = "<div class='RondRole'></div>Tank : " + NombreTank + ""
     document.querySelector(".CompteurRoleGlobal").children[1].innerHTML = "<div class='RondRole'></div>Support : " + NombreSupport + ""
@@ -521,7 +522,7 @@ function CompterLesChampions() {
 }
 
 // var idx = thelist.selectedIndex;
-// console.log(document.querySelector(".TitrePartieCentre"))
+// //console.log(document.querySelector(".TitrePartieCentre"))
 // document.querySelector(".TitrePartieCentre").innerHTML="idx"
 // document.querySelector(".SelecteurRole").addEventListener("Change", combo(thelist, theinput))
 
@@ -531,6 +532,6 @@ function combo(thelist, theinput) {
     // RoleSelectionne = thelist.options[idx].innerHTML;
     RoleSelectionne = thelist.options[idx].value;
     //   theinput.value = content;	
-    console.log(RoleSelectionne)
+    //console.log(RoleSelectionne)
     start();
 }
