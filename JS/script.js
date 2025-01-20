@@ -43,7 +43,7 @@ function MoyenneStats() {
     })
     //console.log(sommes);
     Object.entries(sommes).forEach(([stat, valeur]) => {
-        document.querySelector(".MoyenneDesStats").innerHTML += "<div class=" + stat + ">" + stat + " : " + valeur + "</div>"
+        document.querySelector(".MoyenneDesStats").innerHTML += "<div>" + stat + " : " + valeur + "</div>"
     })
 
     CompterLesChampions();
@@ -290,13 +290,16 @@ function DifferenceGraphique(champion) {
         //console.log(Math.abs(value - valeur) * 100 / valeur)
         //console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
         if (Math.round(value - valeur) > 0) {
-            zqsd += "<path d='M3 394V0' stroke='#00FF37' stroke-width='5' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (10 + 4 * compteur) + "%);'/>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='16px' style='transform: translateX(" + (10 + 4 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
+            zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='16' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
+        }
+        else if (Math.round(value - valeur) == 0) {
+            zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
         }
         else if (Math.round(value - valeur) < 0) {
-            zqsd += "<path d='M3 394V394 788' stroke='#FF0000' stroke-width='5' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (10 + 4 * compteur) + "%);'/>"
-            zqsd += "<text x='0' y='808' font-family='Montserrat' font-size='16px' fill='red' style='transform: translateX(" + (10 + 4 * compteur) + "%);'>" + key + "</text>"
-
+            zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='16' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
         }
         // else if (Math.round(value - valeur) == 0) {
         //     zqsd += "<div class=" + key + ">La stat de <b>" + key + "</b> est pile à la moyenne : " + (Math.round(value - valeur)) + "</div>"

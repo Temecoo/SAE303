@@ -286,13 +286,13 @@ main {
     font-family: Montserrat-bold;
 }
 
-.RolePersonnageSelectionne{
+.RolePersonnageSelectionne {
     display: flex;
     height: 32px;
     gap: 8px;
 }
 
-.RolePersonnageSelectionne{
+.RolePersonnageSelectionne {
     width: 100%;
 }
 
@@ -371,9 +371,8 @@ main {
     display: block;
 }
 
-.TitreBarreGraphique{
-    
-    fill: blue;
+.TitreBarreGraphique {
+    fill: whitesmoke;
 }
 
 .UneBarre {
