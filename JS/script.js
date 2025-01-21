@@ -7,6 +7,7 @@ let Jungle = "FALSE";
 let MidLane = "FALSE";
 let BotLane = "FALSE";
 let Support = "FALSE";
+let CategorieDeLaPage = "CHAMPIONS"
 
 
 //console.log(champions);
@@ -290,7 +291,7 @@ function DifferenceGraphique(champion) {
         //console.log(Math.abs(value - valeur) * 100 / valeur)
         //console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
         if (Math.round(value - valeur) > 0) {
-            zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='16' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
+            zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
         }
         else if (Math.round(value - valeur) == 0) {
@@ -298,7 +299,7 @@ function DifferenceGraphique(champion) {
             zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
         }
         else if (Math.round(value - valeur) < 0) {
-            zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='16' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
+            zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
         }
         // else if (Math.round(value - valeur) == 0) {
@@ -537,4 +538,58 @@ function combo(thelist, theinput) {
     //   theinput.value = content;	
     //console.log(RoleSelectionne)
     start();
+}
+
+document.querySelector(".TitrePartieCentre:nth-child(1)").addEventListener("click", ChangementDeLaCategorieDeLaPage)
+
+function ChangementDeLaCategorieDeLaPage() {
+    document.querySelector(".TitrePartieCentre:nth-child(2)").style = "opacity: 15%"
+    this.style = "opacity: 100%"
+    if (CategorieDeLaPage == "COMPARAISON") {
+        start();
+        console.log("j'arrive jusque là");
+        CategorieDeLaPage = "CHAMPIONS";
+    }
+}
+
+document.querySelector(".TitrePartieCentre:nth-child(2)").addEventListener("click", RetourDeLaCategorieDeLaPage)
+
+function RetourDeLaCategorieDeLaPage() {
+    document.querySelector(".TitrePartieCentre:nth-child(1)").style = "opacity: 15%"
+    this.style = "opacity: 100%"
+    if (CategorieDeLaPage == "CHAMPIONS") {
+        //LANCER LA FONCTION QUI MET LA PAGE EN VERSION COMPARAISON DE DEUX PERSONNAGES
+        console.log("j'arrive ici aussi");
+        VersionComparaisonDesPersonnage();
+        CategorieDeLaPage = "COMPARAISON";
+    }
+}
+
+function VersionComparaisonDesPersonnage() {
+    let output = "";
+    champions.forEach(champion => {
+        output += `
+        <div class='ComparaisonDesPersonnageGlobal>
+            <div class='SelectionDesChampionDeLaComparaisonGlobal>
+                <div class='SelectionDuChampionDeLaComparaison'>
+                    ${SelectionDesChampionDeLaComparaison(champion)}
+                </div>
+                <div class='SelectionDuChampionDeLaComparaison'>
+                    ${SelectionDesChampionDeLaComparaison(champion)}
+                </div>
+            </div>
+            <div class='VueComparaisonChampion'>
+                ${VueComparaisonChampion(champion)}
+            </div>
+        </div>`;
+    })
+    document.querySelector(".image").innerHTML = output;
+}
+
+function SelectionDesChampionDeLaComparaison(champion){
+    console.log("Selectionne tes champions")
+}
+
+function VueComparaisonChampion(champion){
+    console.log("Compare tes champions séléctionnés")
 }

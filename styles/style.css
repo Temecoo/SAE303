@@ -408,3 +408,12 @@ svg {
 .LaBranche2 {
     transform: translateY(-100%);
 }
+
+.TitreDifferentePartie{
+    display: flex;
+    gap: 16px;
+}
+
+.TitrePartieCentre:nth-child(2){
+    opacity: 15%;
+}
