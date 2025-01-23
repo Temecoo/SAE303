@@ -1,4 +1,6 @@
 var sommes = {};
+var PersonnageComparaison1 = "";
+var PersonnageComparaison2 = "";
 let DirectionFlecheFiltrageRole = "BAS";
 let nbChampions = 0;
 var RoleSelectionne = "";
@@ -567,29 +569,55 @@ function RetourDeLaCategorieDeLaPage() {
 
 function VersionComparaisonDesPersonnage() {
     let output = "";
-    champions.forEach(champion => {
+    //  onChange="combo(this, 'theinput')
         output += `
         <div class='ComparaisonDesPersonnageGlobal>
             <div class='SelectionDesChampionDeLaComparaisonGlobal>
                 <div class='SelectionDuChampionDeLaComparaison'>
-                    ${SelectionDesChampionDeLaComparaison(champion)}
+                    <select class="FiltrageRole" name="thelist" onChange="kombo(this, 'theinput')">
+                        <option value=""></option>
+                        ${SelectionDesChampionDeLaComparaison()}
+                    </select>
                 </div>
                 <div class='SelectionDuChampionDeLaComparaison'>
-                    ${SelectionDesChampionDeLaComparaison(champion)}
+                    <select class="FiltrageRole" name="thelist"onChange="kombo(this, 'theinput')">
+                        <option value=""></option>
+                        ${SelectionDesChampionDeLaComparaison()}
+                    </select>
                 </div>
             </div>
             <div class='VueComparaisonChampion'>
-                ${VueComparaisonChampion(champion)}
+                ${VueComparaisonChampion()}
             </div>
         </div>`;
-    })
+    // })
     document.querySelector(".image").innerHTML = output;
 }
 
-function SelectionDesChampionDeLaComparaison(champion){
+function SelectionDesChampionDeLaComparaison() {
+    // PersonnageComparaison1
+    let aze = ""
+    champions.forEach(champion => {
+        console.log(champion["name"])
+        aze += `<option value="`+champion["name"]+`">`+champion["name"]+`</option>`
+    })                       
     console.log("Selectionne tes champions")
+    return aze;
 }
 
-function VueComparaisonChampion(champion){
+function kombo(thelist, theinput) {
+    theinput = document.getElementById(theinput);
+    var idx = thelist.selectedIndex;
+    // RoleSelectionne = thelist.options[idx].innerHTML;
+    if(this == document.querySelector(".FiltrageRole:nth-child(1)")){
+        console.log("ça marche")
+        PersonnageComparaison1 = thelist.options[idx].value;
+    }
+    //   theinput.value = content;	
+    //console.log(RoleSelectionne)
+    start();
+}
+
+function VueComparaisonChampion() {
     console.log("Compare tes champions séléctionnés")
 }
