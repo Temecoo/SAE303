@@ -417,3 +417,19 @@ svg {
 .TitrePartieCentre:nth-child(2){
     opacity: 15%;
 }
+
+.ComparaisonDesPersonnageGlobal{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.SelectionDesChampionDeLaComparaisonGlobal{
+    display: flex;
+    justify-content: space-around;
+}
+
+.VueComparaisonChampion{
+    text-align: center;
+    margin-top: 20%;
+}

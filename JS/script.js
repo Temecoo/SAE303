@@ -569,55 +569,82 @@ function RetourDeLaCategorieDeLaPage() {
 
 function VersionComparaisonDesPersonnage() {
     let output = "";
+    PersonnageComparaison1 = "";
+    PersonnageComparaison2 = "";
     //  onChange="combo(this, 'theinput')
         output += `
-        <div class='ComparaisonDesPersonnageGlobal>
-            <div class='SelectionDesChampionDeLaComparaisonGlobal>
+        <div class='ComparaisonDesPersonnageGlobal'>
+            <div class='SelectionDesChampionDeLaComparaisonGlobal'>
                 <div class='SelectionDuChampionDeLaComparaison'>
-                    <select class="FiltrageRole" name="thelist" onChange="kombo(this, 'theinput')">
+                    <select id=select1 class="FiltrageRole" name="thelist">
                         <option value=""></option>
                         ${SelectionDesChampionDeLaComparaison()}
                     </select>
                 </div>
                 <div class='SelectionDuChampionDeLaComparaison'>
-                    <select class="FiltrageRole" name="thelist"onChange="kombo(this, 'theinput')">
+                    <select id=select2 class="FiltrageRole" name="thelist">
                         <option value=""></option>
                         ${SelectionDesChampionDeLaComparaison()}
                     </select>
                 </div>
             </div>
             <div class='VueComparaisonChampion'>
-                ${VueComparaisonChampion()}
             </div>
         </div>`;
     // })
     document.querySelector(".image").innerHTML = output;
+    VueComparaisonChampion()
+    document.querySelector("#select1").addEventListener("change", kombo);
+    document.querySelector("#select2").addEventListener("change", kombo);
 }
 
 function SelectionDesChampionDeLaComparaison() {
     // PersonnageComparaison1
     let aze = ""
     champions.forEach(champion => {
-        console.log(champion["name"])
+        // console.log(champion["name"])
         aze += `<option value="`+champion["name"]+`">`+champion["name"]+`</option>`
     })                       
     console.log("Selectionne tes champions")
     return aze;
 }
 
-function kombo(thelist, theinput) {
-    theinput = document.getElementById(theinput);
-    var idx = thelist.selectedIndex;
-    // RoleSelectionne = thelist.options[idx].innerHTML;
-    if(this == document.querySelector(".FiltrageRole:nth-child(1)")){
-        console.log("ça marche")
-        PersonnageComparaison1 = thelist.options[idx].value;
+function kombo() {
+    //theinput = document.getElementById(theinput);
+    //var idx = thelist.selectedIndex;
+    // Role.idSelectionne = thelist.options[idx].innerHTML;
+    if(this.id == "select1"){
+        // console.log("ça marche")
+        PersonnageComparaison1 = this.value;
+        // console.log(this.value)
+    }
+    else if(this.id == "select2"){
+        // console.log("ça marche")
+        PersonnageComparaison2 = this.value;
+        // console.log(this.value)
     }
     //   theinput.value = content;	
     //console.log(RoleSelectionne)
-    start();
+    // start();
+    VueComparaisonChampion();
 }
 
 function VueComparaisonChampion() {
-    console.log("Compare tes champions séléctionnés")
+    let qsd = ""
+    console.log("PersonnageComparaison1 : " + PersonnageComparaison1 + " et PersonnageComparaison2 : " + PersonnageComparaison2)
+    if(PersonnageComparaison1 != "" && PersonnageComparaison2 != ""){
+        console.log("Perso séléctionné");
+        qsd = "";
+        qsd += "Merci d'avoir séléctionné des personnages";
+        document.querySelector(".VueComparaisonChampion").style="margin-top: 0%;"
+        console.log(qsd)
+    }
+    else if(PersonnageComparaison1 == "" || PersonnageComparaison2 == ""){
+        console.log("Perso inconnu");
+        qsd = "";
+        qsd += "Veuillez choisir deux personnages";
+    }
+    // console.log("Compare tes champions séléctionnés")
+    // return qsd
+    document.querySelector(".VueComparaisonChampion").innerText=qsd
 }
