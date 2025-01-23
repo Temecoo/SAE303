@@ -183,6 +183,7 @@ main {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    cursor: pointer;
 }
 
 /* .FiltreurRoleGlobal {
@@ -218,6 +219,7 @@ main {
 
 .TitrePartieCentre {
     font-family: Montserrat-bold;
+    cursor: pointer;
 }
 
 .PartieCentreLogo {
@@ -431,5 +433,9 @@ svg {
 
 .VueComparaisonChampion{
     text-align: center;
-    margin-top: 20%;
+    margin-top: 128px;
+}
+
+.PersonnageNonSelectionne{
+    font-family: Montserrat-black;
 }

@@ -636,15 +636,16 @@ function VueComparaisonChampion() {
         console.log("Perso séléctionné");
         qsd = "";
         qsd += "Merci d'avoir séléctionné des personnages";
-        document.querySelector(".VueComparaisonChampion").style="margin-top: 0%;"
+        document.querySelector(".VueComparaisonChampion").style="margin-top: 0px;"
         console.log(qsd)
     }
     else if(PersonnageComparaison1 == "" || PersonnageComparaison2 == ""){
         console.log("Perso inconnu");
         qsd = "";
-        qsd += "Veuillez choisir deux personnages";
+        qsd += "<h3 class='PersonnageNonSelectionne'>Veuillez choisir deux personnages</h3>";
+        document.querySelector(".VueComparaisonChampion").style="margin-top: 128px;"
     }
     // console.log("Compare tes champions séléctionnés")
     // return qsd
-    document.querySelector(".VueComparaisonChampion").innerText=qsd
+    document.querySelector(".VueComparaisonChampion").innerHTML=qsd
 }
