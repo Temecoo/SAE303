@@ -433,9 +433,33 @@ svg {
 
 .VueComparaisonChampion{
     text-align: center;
-    margin-top: 128px;
 }
 
 .PersonnageNonSelectionne{
     font-family: Montserrat-black;
+}
+
+.ImageDuPersoSelectionneGlobal{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ImageDuPersoSelectionne{
+    width: 100px;
+}
+
+.DescriptionStatSVGhp{
+    display: none;
+}
+
+.DescriptionStatSVGhpperlevel{
+    display: none;
+}
+
+.DescriptionStatSVGmp{
+    display: none;
+}
+
+.DescriptionStatSVGsepllblock{
+    display: none;
 }

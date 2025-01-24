@@ -1,4 +1,6 @@
 var sommes = {};
+var StatPersoSelectionne1 = {};
+var StatPersoSelectionne2 = {};
 var PersonnageComparaison1 = "";
 var PersonnageComparaison2 = "";
 let DirectionFlecheFiltrageRole = "BAS";
@@ -295,6 +297,9 @@ function DifferenceGraphique(champion) {
         if (Math.round(value - valeur) > 0) {
             zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
+            zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
+                        <div class="DescriptionStatSVG${key}">La stat de ${key} est égal à ${value}</div>
+                    </foreignObject>`
         }
         else if (Math.round(value - valeur) == 0) {
             zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
@@ -572,7 +577,7 @@ function VersionComparaisonDesPersonnage() {
     PersonnageComparaison1 = "";
     PersonnageComparaison2 = "";
     //  onChange="combo(this, 'theinput')
-        output += `
+    output += `
         <div class='ComparaisonDesPersonnageGlobal'>
             <div class='SelectionDesChampionDeLaComparaisonGlobal'>
                 <div class='SelectionDuChampionDeLaComparaison'>
@@ -603,8 +608,8 @@ function SelectionDesChampionDeLaComparaison() {
     let aze = ""
     champions.forEach(champion => {
         // console.log(champion["name"])
-        aze += `<option value="`+champion["name"]+`">`+champion["name"]+`</option>`
-    })                       
+        aze += `<option value="` + champion["name"] + `">` + champion["name"] + `</option>`
+    })
     console.log("Selectionne tes champions")
     return aze;
 }
@@ -613,12 +618,12 @@ function kombo() {
     //theinput = document.getElementById(theinput);
     //var idx = thelist.selectedIndex;
     // Role.idSelectionne = thelist.options[idx].innerHTML;
-    if(this.id == "select1"){
+    if (this.id == "select1") {
         // console.log("ça marche")
         PersonnageComparaison1 = this.value;
         // console.log(this.value)
     }
-    else if(this.id == "select2"){
+    else if (this.id == "select2") {
         // console.log("ça marche")
         PersonnageComparaison2 = this.value;
         // console.log(this.value)
@@ -632,20 +637,57 @@ function kombo() {
 function VueComparaisonChampion() {
     let qsd = ""
     console.log("PersonnageComparaison1 : " + PersonnageComparaison1 + " et PersonnageComparaison2 : " + PersonnageComparaison2)
-    if(PersonnageComparaison1 != "" && PersonnageComparaison2 != ""){
+    if (PersonnageComparaison1 != "" && PersonnageComparaison2 != "") {
         console.log("Perso séléctionné");
         qsd = "";
-        qsd += "Merci d'avoir séléctionné des personnages";
-        document.querySelector(".VueComparaisonChampion").style="margin-top: 0px;"
+        qsd += "<div class='ImageDuPersoSelectionneGlobal'>"
+        StatPersoSelectionne1 = {}
+        StatPersoSelectionne2 = {}
+        champions.forEach(champion => {
+            if (champion["name"].includes(PersonnageComparaison1)) {
+                qsd += "<div><img class='ImageDuPersoSelectionne' src='" + champion["icon"] + "'></img></div>"
+                Object.entries(champion.stats).forEach(([stat, valeur]) => {
+                    if (StatPersoSelectionne1[stat]) {
+                        StatPersoSelectionne1[stat] += valeur
+                    }
+                    else {
+                        StatPersoSelectionne1[stat] = valeur;
+                    }
+                })
+                StatPersoSelectionne1
+            }
+        })
+        champions.forEach(champion => {
+            if (champion["name"].includes(PersonnageComparaison2)) {
+                qsd += "<div><img class='ImageDuPersoSelectionne' src='" + champion["icon"] + "'></img></div>"
+                Object.entries(champion.stats).forEach(([stat, valeur]) => {
+                    if (StatPersoSelectionne2[stat]) {
+                        StatPersoSelectionne2[stat] += valeur
+                    }
+                    else {
+                        StatPersoSelectionne2[stat] = valeur;
+                    }
+                })
+            }
+        })
+        qsd += "</div>"
+        document.querySelector(".VueComparaisonChampion").style = "margin-top: 0px;"
         console.log(qsd)
     }
-    else if(PersonnageComparaison1 == "" || PersonnageComparaison2 == ""){
+    else if (PersonnageComparaison1 == "" || PersonnageComparaison2 == "") {
         console.log("Perso inconnu");
         qsd = "";
         qsd += "<h3 class='PersonnageNonSelectionne'>Veuillez choisir deux personnages</h3>";
-        document.querySelector(".VueComparaisonChampion").style="margin-top: 128px;"
+        document.querySelector(".VueComparaisonChampion").style = "margin-top: 128px;"
     }
     // console.log("Compare tes champions séléctionnés")
     // return qsd
-    document.querySelector(".VueComparaisonChampion").innerHTML=qsd
+    document.querySelector(".VueComparaisonChampion").innerHTML = qsd
+
+    jffdsfsdf()
+}
+
+function jffdsfsdf() {
+    console.log(Object.entries(StatPersoSelectionne1))
+    console.log(Object.entries(StatPersoSelectionne2))
 }
