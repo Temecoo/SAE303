@@ -1,6 +1,7 @@
 var sommes = {};
 var StatPersoSelectionne1 = {};
 var StatPersoSelectionne2 = {};
+let LePersoSéléctionné ="";
 var PersonnageComparaison1 = "";
 var PersonnageComparaison2 = "";
 let DirectionFlecheFiltrageRole = "BAS";
@@ -108,12 +109,12 @@ function start() {
         if (champion["tags"].includes(RoleSelectionne) || RoleSelectionne == "") {
             output += `
             <div class='personnage'>
-                <img src='${champion["icon"]}'></img>
+                <img class='${champion["name"]}' src='${champion["icon"]}'></img>
                 <div class='ChoixSelectionPersonnage'>
                     ${htmlStats(champion)}
                 </div>
                 <div class='ComparaisonStat'>
-                    <div class='GraphiqueStat>
+                    <div class='GraphiqueStat'>
                         ${DifferenceGraphique(champion)}
                     </div>
                 </div>
@@ -251,7 +252,7 @@ function htmlStats(champion) {
     });
     output += `</div></div><div class="LeHoverDuGraph">ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef </div>`
 
-    
+
     // Object.entries(champion.stats).forEach(([key, value]) => {
     //     output += "<div>" + key + ":" + value + "</div>"
     // })
@@ -291,7 +292,7 @@ function DifferenceGraphique(champion) {
     let zqsd = "";
     //console.log("hhhhhhhhhhhhhhhhhhhhhhh" + sommes);
     let compteur = 0;
-    zqsd += "<div class='GraphiqueChampionAffichage'>    <svg width='1234' height='788' viewBox='0 0 1234 788' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M0 394L1234 394' stroke='#E3E300' stroke-width='5' />"
+    zqsd += "<div class='GraphiqueChampionAffichage'>    <svg width='1234' height='788' viewBox='0 0 1234 788' class='GraphDesPersoGlobal' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M0 394L1234 394' stroke='#E3E300' stroke-width='5' />"
     Object.entries(champion.stats).forEach(([key, value]) => {
         valeur = sommes[key];
         //Object.entries(StatM[0]).forEach(([stat, valeur])=>{
@@ -299,21 +300,21 @@ function DifferenceGraphique(champion) {
         //console.log(Math.abs(value - valeur) * 100 / valeur)
         //console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
         if (Math.round(value - valeur) > 0) {
-            zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
+            zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
             // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px'>
             //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
             //         </foreignObject>`
         }
         else if (Math.round(value - valeur) == 0) {
-            zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
+            zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
             // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
             //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
             //         </foreignObject>`
         }
         else if (Math.round(value - valeur) < 0) {
-            zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
+            zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
             zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
             // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
             //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
@@ -700,4 +701,44 @@ function VueComparaisonChampion() {
 function jffdsfsdf() {
     console.log(Object.entries(StatPersoSelectionne1))
     console.log(Object.entries(StatPersoSelectionne2))
+}
+
+document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+    element.addEventListener("mouseover", HoverDuGraphArrive)
+});
+
+document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+    element.addEventListener("mouseover", HoverDuGraphArrive)
+});
+
+function HoverDuGraphArrive() {
+    let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
+    LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
+    let LaStat = this.className
+    // console.log(LePersoSéléctionné)
+    // console.log(LeHover)
+    champions.forEach(champion =>{
+        if(champion["name"].includes(LePersoSéléctionné)){
+            // document.querySelector(".LeHoverDuGraph").classList.add("LeHoverDuGraphAffiche")
+            EcritureDuHover(champion, LaStat)
+            LeHover.innerHTML = "Je suis sur le perso : " + champion["name"]
+            LeHover.classList.add("LeHoverDuGraphAffiche")
+        }
+    })
+}
+
+document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+    element.addEventListener("mouseleave", HoverDuGraphPart)
+});
+
+document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+    element.addEventListener("mouseleave", HoverDuGraphPart)
+});
+
+function HoverDuGraphPart(){
+    document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
+}
+
+function EcritureDuHover(champion, LaStat){
+    console.log(LaStat)
 }

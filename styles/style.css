@@ -363,7 +363,7 @@ main {
 
 .afficher>.ChoixSelectionPersonnage {
     display: block;
-    max-width: 20%;
+    width: 20%;
 }
 
 .ComparaisonStat {
@@ -455,5 +455,10 @@ svg {
 } */
 
 .LeHoverDuGraph{
-    background-color: red;
+    display: none;
 }
+
+.LeHoverDuGraphAffiche{
+    display: flex;
+}
+
