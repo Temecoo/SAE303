@@ -1,5 +1,44 @@
 const champions = [
   {
+    "id": "test",
+    "key": "999",
+    "name": "test",
+    "title": "delete later please ignore it",
+    "tags": [
+      "Mage",
+      "Tank"
+    ],
+    "stats": {
+      "hp": 6456542524345323213123535435437354,
+      "hpperlevel": 0,
+      "mp": 0,
+      "mpperlevel": 0,
+      "movespeed": 0,
+      "armor": 0,
+      "armorperlevel": 0,
+      "spellblock": 0,
+      "spellblockperlevel": 0,
+      "attackrange": 0,
+      "hpregen": 0,
+      "hpregenperlevel": 0,
+      "mpregen": 0,
+      "mpregenperlevel": 0,
+      "crit": 0,
+      "critperlevel": 0,
+      "attackdamage": 0,
+      "attackdamageperlevel": 0,
+      "attackspeedperlevel": 0,
+      "attackspeed": 0
+    },
+    "icon": "https://latavernedutesteur.fr/wp-content/uploads/2017/11/testss.png",
+    "sprite": {
+      "url": "http://ddragon.leagueoflegends.com/cdn/10.23.1/img/sprite/champion0.png",
+      "x": 0,
+      "y": 0
+    },
+    "description": "Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find..."
+  },
+  {
     "id": "aatrox",
     "key": "266",
     "name": "Aatrox",

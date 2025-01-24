@@ -362,7 +362,8 @@ main {
 }
 
 .afficher>.ChoixSelectionPersonnage {
-    display: flex;
+    display: block;
+    max-width: 20%;
 }
 
 .ComparaisonStat {
@@ -405,6 +406,7 @@ main {
 
 svg {
     width: 100%;
+    height: 100%;
 }
 
 .LaBranche2 {
@@ -448,18 +450,10 @@ svg {
     width: 100px;
 }
 
-.DescriptionStatSVGhp{
+/* .DescriptionStatSVG{
     display: none;
-}
+} */
 
-.DescriptionStatSVGhpperlevel{
-    display: none;
-}
-
-.DescriptionStatSVGmp{
-    display: none;
-}
-
-.DescriptionStatSVGsepllblock{
-    display: none;
+.LeHoverDuGraph{
+    background-color: red;
 }
