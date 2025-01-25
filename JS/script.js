@@ -1,7 +1,7 @@
 var sommes = {};
 var StatPersoSelectionne1 = {};
 var StatPersoSelectionne2 = {};
-let LePersoSéléctionné ="";
+let LePersoSéléctionné = "";
 var PersonnageComparaison1 = "";
 var PersonnageComparaison2 = "";
 let DirectionFlecheFiltrageRole = "BAS";
@@ -714,11 +714,23 @@ document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
 function HoverDuGraphArrive() {
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
-    let LaStat = this.className
+    let LaStat = this.classList[0]
     // console.log(LePersoSéléctionné)
     // console.log(LeHover)
-    champions.forEach(champion =>{
-        if(champion["name"].includes(LePersoSéléctionné)){
+    // console.log(LaStat)
+    champions.forEach(champion => {
+        if (champion["name"].includes(LePersoSéléctionné) && LaStat != undefined) {
+
+            // dans la ligne du haut qui est en commentaire j'utilise le point qui sert a rentrer dans le nouveau tableau et "LaStat" n'est pas un tableau mais une suite de caractère qui change au hover sur le graphique pour prendre le nom de la stat qu'on survole donc impossible de rentrer dedans
+            // dans la ligne du bas j'utilise les crochet avec les guillemets pour rentrer aussi dans le tableau mais en utilisant une suite de caractère ce qui permet de faire passer incognito "LaStat" pour lequel il va juste lire ce qu'il contient car je n'ai pas mis les guillemets et il utilise comme suite de caractère ce qu'il contient
+
+            // ça permet de changer la stat afficher en js au hover sans avoir besoin de rester dans les boucles de forEach
+
+            // console.log(champion.stats.LaStat)
+            // console.log(champion["stats"][LaStat])
+
+
+
             // document.querySelector(".LeHoverDuGraph").classList.add("LeHoverDuGraphAffiche")
             EcritureDuHover(champion, LaStat)
             LeHover.innerHTML = "Je suis sur le perso : " + champion["name"]
@@ -735,10 +747,13 @@ document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
     element.addEventListener("mouseleave", HoverDuGraphPart)
 });
 
-function HoverDuGraphPart(){
-    document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
+function HoverDuGraphPart() {
+    if (this.classList[0] != undefined) {
+        document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
+    }
 }
 
-function EcritureDuHover(champion, LaStat){
-    console.log(LaStat)
+function EcritureDuHover(champion, LaStat) {
+    console.log(champion["name"] + " possède " + champion["stats"][LaStat] + " en " + LaStat)
+    // console.log(LaStat)
 }

@@ -413,40 +413,40 @@ svg {
     transform: translateY(-100%);
 }
 
-.TitreDifferentePartie{
+.TitreDifferentePartie {
     display: flex;
     gap: 16px;
 }
 
-.TitrePartieCentre:nth-child(2){
+.TitrePartieCentre:nth-child(2) {
     opacity: 15%;
 }
 
-.ComparaisonDesPersonnageGlobal{
+.ComparaisonDesPersonnageGlobal {
     display: flex;
     flex-direction: column;
     width: 95%;
 }
 
-.SelectionDesChampionDeLaComparaisonGlobal{
+.SelectionDesChampionDeLaComparaisonGlobal {
     display: flex;
     justify-content: space-around;
 }
 
-.VueComparaisonChampion{
+.VueComparaisonChampion {
     text-align: center;
 }
 
-.PersonnageNonSelectionne{
+.PersonnageNonSelectionne {
     font-family: Montserrat-black;
 }
 
-.ImageDuPersoSelectionneGlobal{
+.ImageDuPersoSelectionneGlobal {
     display: flex;
     justify-content: space-between;
 }
 
-.ImageDuPersoSelectionne{
+.ImageDuPersoSelectionne {
     width: 100px;
 }
 
@@ -454,11 +454,14 @@ svg {
     display: none;
 } */
 
-.LeHoverDuGraph{
+.LeHoverDuGraph {
     display: none;
 }
 
-.LeHoverDuGraphAffiche{
+.LeHoverDuGraphAffiche {
     display: flex;
 }
 
+.InformationPersonnageSelectionne {
+    padding-left: 8px;
+}
