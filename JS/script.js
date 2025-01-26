@@ -1,6 +1,7 @@
 var sommes = {};
 var StatPersoSelectionne1 = {};
 var StatPersoSelectionne2 = {};
+var StatPersoSelectionneGlobal = {};
 let LePersoSéléctionné = "";
 var PersonnageComparaison1 = "";
 var PersonnageComparaison2 = "";
@@ -648,7 +649,7 @@ function kombo() {
 function VueComparaisonChampion() {
     let qsd = ""
     console.log("PersonnageComparaison1 : " + PersonnageComparaison1 + " et PersonnageComparaison2 : " + PersonnageComparaison2)
-    if (PersonnageComparaison1 != "" && PersonnageComparaison2 != "") {
+    if (PersonnageComparaison1 != "" && PersonnageComparaison2 != "" && PersonnageComparaison1 != PersonnageComparaison2) {
         console.log("Perso séléctionné");
         qsd = "";
         qsd += "<div class='ImageDuPersoSelectionneGlobal'>"
@@ -665,7 +666,7 @@ function VueComparaisonChampion() {
                         StatPersoSelectionne1[stat] = valeur;
                     }
                 })
-                StatPersoSelectionne1
+                // StatPersoSelectionne1
             }
         })
         champions.forEach(champion => {
@@ -691,6 +692,11 @@ function VueComparaisonChampion() {
         qsd += "<h3 class='PersonnageNonSelectionne'>Veuillez choisir deux personnages</h3>";
         document.querySelector(".VueComparaisonChampion").style = "margin-top: 128px;"
     }
+    else if (PersonnageComparaison1 == PersonnageComparaison2) {
+        qsd = "";
+        qsd += "<h3 class='PersonnageNonSelectionne'>Vous ne pouvez pas comparer un personnage à lui même</h3>";
+        document.querySelector(".VueComparaisonChampion").style = "margin-top: 128px;"
+    }
     // console.log("Compare tes champions séléctionnés")
     // return qsd
     document.querySelector(".VueComparaisonChampion").innerHTML = qsd
@@ -701,6 +707,35 @@ function VueComparaisonChampion() {
 function jffdsfsdf() {
     console.log(Object.entries(StatPersoSelectionne1))
     console.log(Object.entries(StatPersoSelectionne2))
+    Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
+        // console.log(stat + " est de : " + valeur)
+        StatPersoSelectionneGlobal[stat] = valeur
+    })
+    Object.entries(StatPersoSelectionne2).forEach(([stat2, valeur2]) => {
+        // console.log(stat2 + " est de : " + valeur2)
+        Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
+
+            if (stat == stat2)
+                StatPersoSelectionneGlobal[stat] = valeur - valeur2
+        })
+
+    })
+    // var StatPersoSelectionneGlobal = (StatPersoSelectionne1 + StatPersoSelectionne2)
+    console.log(Object.entries(StatPersoSelectionneGlobal))
+    let Personnage1Compteur = 0
+    let Personnage2Compteur = 0
+    let PersonnageEgalitéCompteur = 0
+    Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
+        if (valeur > 0)
+            Personnage1Compteur++
+        else if (valeur == 0)
+            PersonnageEgalitéCompteur++
+        else if (valeur < 0)
+            Personnage2Compteur++
+    })
+    console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
+    console.log("Stat ou le perso 2 à l'avantage : " + Personnage2Compteur)
+    console.log("Stat ou le perso 1 et 2 sont a égalité : " + PersonnageEgalitéCompteur)
 }
 
 document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
@@ -732,9 +767,7 @@ function HoverDuGraphArrive() {
 
 
             // document.querySelector(".LeHoverDuGraph").classList.add("LeHoverDuGraphAffiche")
-            EcritureDuHover(champion, LaStat)
-            LeHover.innerHTML = "Je suis sur le perso : " + champion["name"]
-            LeHover.classList.add("LeHoverDuGraphAffiche")
+            EcritureDuHover(champion, LaStat, LeHover)
         }
     })
 }
@@ -753,7 +786,16 @@ function HoverDuGraphPart() {
     }
 }
 
-function EcritureDuHover(champion, LaStat) {
-    console.log(champion["name"] + " possède " + champion["stats"][LaStat] + " en " + LaStat)
+function EcritureDuHover(champion, LaStat, LeHover) {
+    LeHover.innerHTML = "<div class='TitreDuHover'>" + LaStat + "</div><div>" + champion["name"] + " possède " + champion["stats"][LaStat] + " points en " + LaStat + "</div><div class='DescriptionDuHover></div>"
+    DéfinitionStat.forEach(DefStat => {
+        if (DefStat.Name == LaStat) {
+            // document.querySelector(".DescriptionDuHover").innerHTML = DefStat.Définition
+            console.log(DefStat["Définition"])
+            LeHover.innerHTML = `<div class='TitreDuHover'> ${LaStat} </div><div> ${champion["name"]} possède ${champion["stats"][LaStat]} points en ${LaStat} </div><div class='DescriptionDuHover'> ${DefStat["Définition"]} </div>`
+        }
+    })
+    LeHover.classList.add("LeHoverDuGraphAffiche")
+    // console.log(champion["name"] + " possède " + champion["stats"][LaStat] + " en " + LaStat)
     // console.log(LaStat)
 }
