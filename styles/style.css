@@ -487,3 +487,8 @@ svg {
     stroke-dasharray: 0 100;
     animation: 5s;
 } */
+
+text{
+    pointer-events: none;
+    /* Si je veux que le text apparait aussi quand on passe avec la souris sur le text enlève cette ligne */
+}

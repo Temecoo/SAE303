@@ -519,12 +519,12 @@ function Categorie() {
     document.querySelector(".CompteurRoleGlobal").children[5].innerHTML = "<div class='RondRole'></div>Marksman : " + NombreMarksman + ""
 
 
-    document.querySelector(".Tarte").children[0].style = "transform: scale(" + PourcentageSupport + "%); --DelaiDeLaTransition: 0.2s;";
-    document.querySelector(".Tarte").children[1].style = "transform: scale(" + PourcentageFighter + "%); --DelaiDeLaTransition: 0.8s;";
+    document.querySelector(".Tarte").children[0].style = "transform: scale(" + PourcentageSupport + "%); --DelaiDeLaTransition: 0.1s;";
+    document.querySelector(".Tarte").children[1].style = "transform: scale(" + PourcentageFighter + "%); --DelaiDeLaTransition: 0.4s;";
     document.querySelector(".Tarte").children[2].style = "transform: scale(" + PourcentageTank + "%); --DelaiDeLaTransition: 0s;";
-    document.querySelector(".Tarte").children[3].style = "transform: scale(" + PourcentageAssassin + "%); --DelaiDeLaTransition: 0.6s;";
-    document.querySelector(".Tarte").children[4].style = "transform: scale(" + PourcentageMarksman + "%); --DelaiDeLaTransition: 1s;";
-    document.querySelector(".Tarte").children[5].style = "transform: scale(" + PourcentageMage + "%); --DelaiDeLaTransition: 0.4s;";
+    document.querySelector(".Tarte").children[3].style = "transform: scale(" + PourcentageAssassin + "%); --DelaiDeLaTransition: 0.3s;";
+    document.querySelector(".Tarte").children[4].style = "transform: scale(" + PourcentageMarksman + "%); --DelaiDeLaTransition: 0.5s;";
+    document.querySelector(".Tarte").children[5].style = "transform: scale(" + PourcentageMage + "%); --DelaiDeLaTransition: 0.2s;";
 }
 
 // document.querySelector(".FiltrageRole").addEventListener("click", ApparitionFiltrageRole)
@@ -778,6 +778,10 @@ function ActualisationDeLaPage() {
         element.addEventListener("mouseover", HoverDuGraphArrive)
     });
 
+    // document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+    //     element.addEventListener("mouseover", HoverDuGraphArriveText)
+    // });
+
     document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
         element.addEventListener("mouseleave", HoverDuGraphPart)
     });
@@ -785,15 +789,17 @@ function ActualisationDeLaPage() {
     document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
         element.addEventListener("mouseleave", HoverDuGraphPart)
     });
+
+    // document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+    //     element.addEventListener("mouseover", HoverDuGraphPart)
+    // });
 }
 
 function HoverDuGraphArrive() {
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
     let LaStat = this.classList[0]
-    // console.log(LePersoSéléctionné)
-    // console.log(LeHover)
-    // console.log(LaStat)
+
     champions.forEach(champion => {
         if (champion["name"].includes(LePersoSéléctionné) && LaStat != undefined) {
 
@@ -813,6 +819,18 @@ function HoverDuGraphArrive() {
     })
 }
 
+function HoverDuGraphArriveText() {
+    let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
+    LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
+    let LaStat = this.previousSibling.classList[0]
+
+    champions.forEach(champion => {
+        if (champion["name"].includes(LePersoSéléctionné) && LaStat != undefined) {
+            EcritureDuHover(champion, LaStat, LeHover)
+        }
+    })
+}
+
 function HoverDuGraphPart() {
     if (this.classList[0] != undefined) {
         document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
@@ -822,7 +840,6 @@ function HoverDuGraphPart() {
 function EcritureDuHover(champion, LaStat, LeHover) {
     LeHover.classList.add("LeHoverDuGraphAffiche")
     console.log(LeHover)
-    LeHover.innerHTML = "<div class='TitreDuHover'>" + LaStat + "</div><div>" + champion["name"] + " possède " + champion["stats"][LaStat] + " points en " + LaStat + "</div><div class='DescriptionDuHover></div>"
     DéfinitionStat.forEach(DefStat => {
         if (DefStat.Name == LaStat) {
             // document.querySelector(".DescriptionDuHover").innerHTML = DefStat.Définition
