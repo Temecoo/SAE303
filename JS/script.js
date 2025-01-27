@@ -339,6 +339,7 @@ function ensuite() {
     document.querySelectorAll(".personnage").forEach(e => {
         e.addEventListener('click', nom2)
     });
+    ActualisationDeLaPage()
 };
 
 function nom2() {
@@ -685,6 +686,7 @@ function VueComparaisonChampion() {
         qsd += "</div>"
         document.querySelector(".VueComparaisonChampion").style = "margin-top: 0px;"
         console.log(qsd)
+        qsd += `<div class="GraphDeLaComparaison">${jffdsfsdf()}</div>`
     }
     else if (PersonnageComparaison1 == "" || PersonnageComparaison2 == "") {
         console.log("Perso inconnu");
@@ -701,7 +703,6 @@ function VueComparaisonChampion() {
     // return qsd
     document.querySelector(".VueComparaisonChampion").innerHTML = qsd
 
-    jffdsfsdf()
 }
 
 function jffdsfsdf() {
@@ -721,30 +722,48 @@ function jffdsfsdf() {
 
     })
     // var StatPersoSelectionneGlobal = (StatPersoSelectionne1 + StatPersoSelectionne2)
+
+    let output = `<svg height="210" width="500" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="`
+
     console.log(Object.entries(StatPersoSelectionneGlobal))
     let Personnage1Compteur = 0
     let Personnage2Compteur = 0
     let PersonnageEgalitéCompteur = 0
     Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
         if (valeur > 0)
+            // ajoute les points du svg
             Personnage1Compteur++
         else if (valeur == 0)
             PersonnageEgalitéCompteur++
         else if (valeur < 0)
             Personnage2Compteur++
     })
+
+    output += `" style="fill:none;stroke:green;stroke-width:3" />
+                </svg>`
     console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
     console.log("Stat ou le perso 2 à l'avantage : " + Personnage2Compteur)
     console.log("Stat ou le perso 1 et 2 sont a égalité : " + PersonnageEgalitéCompteur)
 }
 
-document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
-    element.addEventListener("mouseover", HoverDuGraphArrive)
-});
+function ActualisationDeLaPage() {
+    document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+        element.addEventListener("mouseover", HoverDuGraphArrive)
+    });
 
-document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
-    element.addEventListener("mouseover", HoverDuGraphArrive)
-});
+    document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+        element.addEventListener("mouseover", HoverDuGraphArrive)
+    });
+
+    document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+        element.addEventListener("mouseleave", HoverDuGraphPart)
+    });
+
+    document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+        element.addEventListener("mouseleave", HoverDuGraphPart)
+    });
+}
 
 function HoverDuGraphArrive() {
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
@@ -772,14 +791,6 @@ function HoverDuGraphArrive() {
     })
 }
 
-document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
-    element.addEventListener("mouseleave", HoverDuGraphPart)
-});
-
-document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
-    element.addEventListener("mouseleave", HoverDuGraphPart)
-});
-
 function HoverDuGraphPart() {
     if (this.classList[0] != undefined) {
         document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
@@ -787,6 +798,8 @@ function HoverDuGraphPart() {
 }
 
 function EcritureDuHover(champion, LaStat, LeHover) {
+    LeHover.classList.add("LeHoverDuGraphAffiche")
+    console.log(LeHover)
     LeHover.innerHTML = "<div class='TitreDuHover'>" + LaStat + "</div><div>" + champion["name"] + " possède " + champion["stats"][LaStat] + " points en " + LaStat + "</div><div class='DescriptionDuHover></div>"
     DéfinitionStat.forEach(DefStat => {
         if (DefStat.Name == LaStat) {
@@ -795,7 +808,6 @@ function EcritureDuHover(champion, LaStat, LeHover) {
             LeHover.innerHTML = `<div class='TitreDuHover'> ${LaStat} </div><div> ${champion["name"]} possède ${champion["stats"][LaStat]} points en ${LaStat} </div><div class='DescriptionDuHover'> ${DefStat["Définition"]} </div>`
         }
     })
-    LeHover.classList.add("LeHoverDuGraphAffiche")
     // console.log(champion["name"] + " possède " + champion["stats"][LaStat] + " en " + LaStat)
     // console.log(LaStat)
 }
