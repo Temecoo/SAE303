@@ -114,6 +114,13 @@ main {
     transform: scale(200%);
 }
 
+.Tarte>path {
+    transform: scale(0%);
+    transform-origin: 50% 50%;
+    transition: 0.4s;
+    transition-delay: var(--DelaiDeLaTransition);
+}
+
 .MouleATarte {
     border: solid #F6FF00 1px;
     border-radius: 100%;
@@ -471,7 +478,12 @@ svg {
     padding-left: 8px;
 }
 
-.TitreDuHover{
+.TitreDuHover {
     font-family: Montserrat-bold;
     font-size: 20px;
 }
+
+/* .GraphiqueChampionAffichage>svg>.path{
+    stroke-dasharray: 0 100;
+    animation: 5s;
+} */

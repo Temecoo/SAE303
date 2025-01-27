@@ -519,12 +519,12 @@ function Categorie() {
     document.querySelector(".CompteurRoleGlobal").children[5].innerHTML = "<div class='RondRole'></div>Marksman : " + NombreMarksman + ""
 
 
-    document.querySelector(".Tarte").children[0].style = "transform: scale(" + PourcentageSupport + "%); transform-origin: 50% 50%";
-    document.querySelector(".Tarte").children[1].style = "transform: scale(" + PourcentageFighter + "%); transform-origin: 50% 50%";
-    document.querySelector(".Tarte").children[2].style = "transform: scale(" + PourcentageTank + "%); transform-origin: 50% 50%";
-    document.querySelector(".Tarte").children[3].style = "transform: scale(" + PourcentageAssassin + "%); transform-origin: 50% 50%";
-    document.querySelector(".Tarte").children[4].style = "transform: scale(" + PourcentageMarksman + "%); transform-origin: 50% 50%";
-    document.querySelector(".Tarte").children[5].style = "transform: scale(" + PourcentageMage + "%); transform-origin: 50% 50%";
+    document.querySelector(".Tarte").children[0].style = "transform: scale(" + PourcentageSupport + "%); --DelaiDeLaTransition: 0.2s;";
+    document.querySelector(".Tarte").children[1].style = "transform: scale(" + PourcentageFighter + "%); --DelaiDeLaTransition: 0.8s;";
+    document.querySelector(".Tarte").children[2].style = "transform: scale(" + PourcentageTank + "%); --DelaiDeLaTransition: 0s;";
+    document.querySelector(".Tarte").children[3].style = "transform: scale(" + PourcentageAssassin + "%); --DelaiDeLaTransition: 0.6s;";
+    document.querySelector(".Tarte").children[4].style = "transform: scale(" + PourcentageMarksman + "%); --DelaiDeLaTransition: 1s;";
+    document.querySelector(".Tarte").children[5].style = "transform: scale(" + PourcentageMage + "%); --DelaiDeLaTransition: 0.4s;";
 }
 
 // document.querySelector(".FiltrageRole").addEventListener("click", ApparitionFiltrageRole)
@@ -708,12 +708,28 @@ function VueComparaisonChampion() {
 function jffdsfsdf() {
     console.log(Object.entries(StatPersoSelectionne1))
     console.log(Object.entries(StatPersoSelectionne2))
+    let Personnage1Compteur = 0
+    let Personnage2Compteur = 0
+    let PersonnageEgalitéCompteur = 0
+    let compteur = 1;
+    let compteur2 = 1;
+
+    let output = `<svg height="650" width="500">
+                    <polyline points="`
+
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
+        output += (compteur * 50) + "," + (650 - valeur) + ", "
+        compteur++
         // console.log(stat + " est de : " + valeur)
         StatPersoSelectionneGlobal[stat] = valeur
     })
+    output += `" style="fill:none;stroke:green;stroke-width:3" /><polyline points="`
+
     Object.entries(StatPersoSelectionne2).forEach(([stat2, valeur2]) => {
         // console.log(stat2 + " est de : " + valeur2)
+        output += (compteur2 * 50) + "," + (650 - valeur2) + ", "
+        compteur2++
+
         Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
 
             if (stat == stat2)
@@ -721,30 +737,36 @@ function jffdsfsdf() {
         })
 
     })
+    output += `" style="fill:none;stroke:red;stroke-width:3" />
+                </svg>`
     // var StatPersoSelectionneGlobal = (StatPersoSelectionne1 + StatPersoSelectionne2)
 
-    let output = `<svg height="210" width="500" xmlns="http://www.w3.org/2000/svg">
-                    <polyline points="`
+    // transform: translateX(" + (7.5 + 4.5 * compteur) + "%)
 
     console.log(Object.entries(StatPersoSelectionneGlobal))
-    let Personnage1Compteur = 0
-    let Personnage2Compteur = 0
-    let PersonnageEgalitéCompteur = 0
+
     Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
-        if (valeur > 0)
+        if (valeur > 0) {
             // ajoute les points du svg
+            // output += (compteur * 50) + "," + (80) + ", "
             Personnage1Compteur++
-        else if (valeur == 0)
+        }
+        else if (valeur == 0) {
+            // output += (compteur * 50) + "," + (40) + ", "
             PersonnageEgalitéCompteur++
-        else if (valeur < 0)
+        }
+        else if (valeur < 0) {
+            // output += (compteur * 50) + "," + (10) + ", "
             Personnage2Compteur++
+        }
+        compteur++
     })
 
-    output += `" style="fill:none;stroke:green;stroke-width:3" />
-                </svg>`
     console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
     console.log("Stat ou le perso 2 à l'avantage : " + Personnage2Compteur)
     console.log("Stat ou le perso 1 et 2 sont a égalité : " + PersonnageEgalitéCompteur)
+
+    return output
 }
 
 function ActualisationDeLaPage() {
