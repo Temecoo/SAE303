@@ -850,3 +850,23 @@ function EcritureDuHover(champion, LaStat, LeHover) {
     // console.log(champion["name"] + " possède " + champion["stats"][LaStat] + " en " + LaStat)
     // console.log(LaStat)
 }
+
+function DefinitionTaillePage() {
+    // Calcule de la place que prendra la zone de jeu en fonction de la taille visibile de la fenetre
+    let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
+    let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
+
+    // Modification de la taille de la zone de jeu
+    document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
+}
+
+
+DefinitionTaillePage();
+
+// On regarde quand on change la taille de la fenetre
+window.addEventListener("resize", RedimentionPage);
+
+function RedimentionPage() {
+    // On recalcule la taille de la zone de jeu
+    DefinitionTaillePage();
+}
