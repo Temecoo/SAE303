@@ -523,6 +523,15 @@ text {
     transform: scaleY(100%);
 } */
 
-.GraphDeLaComparaison>svg{
-    height: 650px;
+.GraphDeLaComparaison{
+    transform: scaleY(-100%);
 }
+
+.SVGDeLaComparaison>*{
+    transform: translateY(40%);
+}
+
+/* 
+.GraphDeLaComparaison{
+    height: 650px;
+} */

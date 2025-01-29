@@ -14,6 +14,7 @@ let MidLane = "FALSE";
 let BotLane = "FALSE";
 let Support = "FALSE";
 let CategorieDeLaPage = "CHAMPIONS"
+let TailleGraph = 0;
 
 
 //console.log(champions);
@@ -652,6 +653,8 @@ function kombo() {
     //   theinput.value = content;	
     //console.log(RoleSelectionne)
     // start();
+    console.log(PersonnageComparaison1)
+    console.log(PersonnageComparaison2)
     VueComparaisonChampion();
 }
 
@@ -710,6 +713,7 @@ function VueComparaisonChampion() {
     // console.log("Compare tes champions séléctionnés")
     // return qsd
     document.querySelector(".VueComparaisonChampion").innerHTML = qsd
+    DefinitionTaillePage();
 
 }
 
@@ -724,11 +728,11 @@ function jffdsfsdf() {
     let compteur3 = 1;
     let compteur4 = 1;
 
-    let output = `<svg class="SVGDeLaComparaison" height="650" width="500">
+    let output = `<svg class="SVGDeLaComparaison">
                     <polyline points="`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        output += (compteur * 50) + "," + (650 - valeur) + ", "
+        output += (compteur * 25) + "," + (valeur / 2) + ", "
         compteur++
         StatPersoSelectionneGlobal[stat] = valeur
     })
@@ -736,7 +740,7 @@ function jffdsfsdf() {
 
     Object.entries(StatPersoSelectionne2).forEach(([stat2, valeur2]) => {
         // console.log(stat2 + " est de : " + valeur2)
-        output += (compteur2 * 50) + "," + (650 - valeur2) + ", "
+        output += (compteur2 * 25) + "," + (valeur2 / 2) + ", "
         compteur2++
 
         Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
@@ -750,12 +754,12 @@ function jffdsfsdf() {
     output += `" style="fill:none;stroke:red;stroke-width:3" />`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        output += `<circle cx='${(compteur3 * 50)}' cy='${(650 - valeur)}' r='4' fill='#727400' class='" + key + "'/>`
+        output += `<circle cx='${(compteur3 * 25)}' cy='${(valeur / 2)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur3++
     })
 
     Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
-        output += `<circle cx='${(compteur4 * 50)}' cy='${(650 - valeur)}' r='4' fill='#727400' class='" + key + "'/>`
+        output += `<circle cx='${(compteur4 * 25)}' cy='${(valeur / 2)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur4++
     })
     output += `</svg>`
@@ -875,13 +879,19 @@ function DefinitionTaillePage() {
     // Calcule de la place que prendra la zone de scroll en fonction de la taille visibile de la fenetre
     let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
     let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
+    // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
     // console.log(NombreTailleVertical)
 
     // Modification de la taille de la zone du milieu ou on peut scroll
-    if (CategorieDeLaPage == "CHAMPIONS")
+    if (CategorieDeLaPage == "CHAMPIONS") {
         document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
-    else if (CategorieDeLaPage == "COMPARAISON")
-        document.querySelector(".SVGDeLaComparaison").style = "height:" + NombreTailleVertical + "px";
+    }
+    else if (CategorieDeLaPage == "COMPARAISON" && PersonnageComparaison1 != "" && PersonnageComparaison2 != "") {
+        TailleGraph = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().top) + 10;
+        // let NombreTailleHorizontal = document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().right - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().left;
+        document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraph);
+        // document.querySelector(".SVGDeLaComparaison").style += "height:" + TailleGraph + "px";
+    }
 }
 
 
@@ -894,3 +904,4 @@ function RedimentionPage() {
     // On recalcule la taille de la zone de jeu
     DefinitionTaillePage();
 }
+
