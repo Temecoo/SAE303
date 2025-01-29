@@ -321,6 +321,7 @@ main {
     display: flex;
     justify-content: center;
     margin-bottom: 16px;
+    cursor: pointer;
 }
 
 .PartieDroite {
@@ -500,10 +501,10 @@ svg {
     animation: 5s;
 } */
 
-text {
-    pointer-events: none;
+/* text { */
+    /* pointer-events: none; */
     /* Si je veux que le text apparait aussi quand on passe avec la souris sur le text enlève cette ligne */
-}
+/* } */
 
 .ImageDuPersoSelectionneGlobal>div:nth-of-type(1)>img {
     box-shadow: 0px 0px 15px green;
@@ -528,10 +529,25 @@ text {
 }
 
 .SVGDeLaComparaison>*{
-    transform: translateY(40%);
+    transform: translateY(4px);
+}
+
+polyline:nth-child(2){
+    stroke-dasharray: 25 10;
 }
 
 /* 
 .GraphDeLaComparaison{
     height: 650px;
 } */
+
+#FiltrageNom{
+    color: white;
+    background-color: #565656;
+    border: solid #F6FF00 1px;
+    padding: 4px;
+}
+
+#FiltrageNom::placeholder{
+    color: rgb(180, 180, 180);
+}

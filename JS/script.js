@@ -15,6 +15,7 @@ let BotLane = "FALSE";
 let Support = "FALSE";
 let CategorieDeLaPage = "CHAMPIONS"
 let TailleGraph = 0;
+let TailleGraphique = 0;
 
 
 //console.log(champions);
@@ -108,7 +109,7 @@ function start() {
     let output = "";
     champions.forEach(champion => {
         //console.log(champion["tags"]);
-        if (champion["tags"].includes(RoleSelectionne) || RoleSelectionne == "") {
+        if ((champion["tags"].includes(RoleSelectionne) || RoleSelectionne == "") && (champion["name"].toLowerCase().includes(document.querySelector("#FiltrageNom").value.toLowerCase()))) {
             output += `
             <div class='personnage'>
                 <img class='${champion["name"]}' src='${champion["icon"]}'></img>
@@ -303,21 +304,24 @@ function DifferenceGraphique(champion) {
         //console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
         if (Math.round(value - valeur) > 0) {
             zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-384px);'>" + key + "</text>"
             // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px'>
             //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
             //         </foreignObject>`
         }
         else if (Math.round(value - valeur) == 0) {
             zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-394px);'>" + key + "</text>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-384px);'>" + key + "</text>"
             // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
             //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
             //         </foreignObject>`
         }
         else if (Math.round(value - valeur) < 0) {
             zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
+            // zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
+            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' text-anchor='end' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-404px);'>" + key + "</text>"
+            console.log(document.querySelector(".TitreBarreGraphique"))
+
             // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
             //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
             //         </foreignObject>`
@@ -551,6 +555,9 @@ function CompterLesChampions() {
 // document.querySelector(".TitrePartieCentre").innerHTML="idx"
 // document.querySelector(".SelecteurRole").addEventListener("Change", combo(thelist, theinput))
 
+document.querySelector("#FiltrageNom").addEventListener("input", start);
+
+
 function combo(thelist, theinput) {
     theinput = document.getElementById(theinput);
     var idx = thelist.selectedIndex;
@@ -573,6 +580,7 @@ function ChangementDeLaCategorieDeLaPage() {
         start();
         console.log("j'arrive jusque là");
         CategorieDeLaPage = "CHAMPIONS";
+        document.querySelector("#FiltrageNom").style="display: block"
     }
 }
 
@@ -586,6 +594,7 @@ function RetourDeLaCategorieDeLaPage() {
         console.log("j'arrive ici aussi");
         VersionComparaisonDesPersonnage();
         CategorieDeLaPage = "COMPARAISON";
+        document.querySelector("#FiltrageNom").style="display: none"
     }
 }
 
@@ -727,22 +736,45 @@ function jffdsfsdf() {
     let compteur2 = 1;
     let compteur3 = 1;
     let compteur4 = 1;
+    let PlusGrandeValeur = 1
+    if (TailleGraphique == 0) {
+        TailleGraphique = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom - 100);
+    }
+    let TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left)*0.9)/20);
 
+    console.log(TailleGraphiqueLargeur)
+
+    console.log(document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom)
+    console.log(document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom)
+
+    Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
+        if (valeur > PlusGrandeValeur)
+            PlusGrandeValeur = valeur
+    })
+    Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
+        if (valeur > PlusGrandeValeur)
+            PlusGrandeValeur = valeur
+    })
+
+    console.log("PlusGrandeValeur " + PlusGrandeValeur + " et TailleGraphique " + TailleGraphique)
+    let Ratio = TailleGraphique / PlusGrandeValeur
+
+    console.log("Ratio" + Ratio)
     // chercher le nombre le plus grand et faire 650 divisé par ce nombre pour obtenir le ratio de ce graph
 
     let output = `<svg class="SVGDeLaComparaison">
                     <polyline points="`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        output += (compteur * 25) + "," + (valeur / 2) + ", "
+        output += (compteur * TailleGraphiqueLargeur) + "," + (valeur * Ratio) + ", "
         compteur++
         StatPersoSelectionneGlobal[stat] = valeur
     })
-    output += `" style="fill:none;stroke:green;stroke-width:3" /><polyline points="`
+    output += `" style="fill:none;stroke:#0b550b;stroke-width:3" /><polyline points="`
 
     Object.entries(StatPersoSelectionne2).forEach(([stat2, valeur2]) => {
         // console.log(stat2 + " est de : " + valeur2)
-        output += (compteur2 * 25) + "," + (valeur2 / 2) + ", "
+        output += (compteur2 * TailleGraphiqueLargeur) + "," + (valeur2 * Ratio) + ", "
         compteur2++
 
         Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
@@ -753,15 +785,15 @@ function jffdsfsdf() {
 
     })
 
-    output += `" style="fill:none;stroke:red;stroke-width:3" />`
+    output += `" style="fill:none;stroke:#8a1313;stroke-width:3" />`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        output += `<circle cx='${(compteur3 * 25)}' cy='${(valeur / 2)}' r='4' fill='#727400' class='" + key + "'/>`
+        output += `<circle cx='${(compteur3 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur3++
     })
 
     Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
-        output += `<circle cx='${(compteur4 * 25)}' cy='${(valeur / 2)}' r='4' fill='#727400' class='" + key + "'/>`
+        output += `<circle cx='${(compteur4 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur4++
     })
     output += `</svg>`
@@ -804,9 +836,9 @@ function ActualisationDeLaPage() {
         element.addEventListener("mouseover", HoverDuGraphArrive)
     });
 
-    // document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
-    //     element.addEventListener("mouseover", HoverDuGraphArriveText)
-    // });
+    document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+        element.addEventListener("mouseover", HoverDuGraphArriveText)
+    });
 
     document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
         element.addEventListener("mouseleave", HoverDuGraphPart)
@@ -816,9 +848,9 @@ function ActualisationDeLaPage() {
         element.addEventListener("mouseleave", HoverDuGraphPart)
     });
 
-    // document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
-    //     element.addEventListener("mouseover", HoverDuGraphPart)
-    // });
+    document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+        element.addEventListener("mouseleave", HoverDuGraphPart)
+    });
 }
 
 function HoverDuGraphArrive() {
@@ -849,6 +881,9 @@ function HoverDuGraphArriveText() {
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
     let LaStat = this.previousSibling.classList[0]
+    console.log(LeHover)
+    console.log(LePersoSéléctionné)
+    console.log(LaStat)
 
     champions.forEach(champion => {
         if (champion["name"].includes(LePersoSéléctionné) && LaStat != undefined) {
@@ -889,9 +924,10 @@ function DefinitionTaillePage() {
         document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
     }
     else if (CategorieDeLaPage == "COMPARAISON" && PersonnageComparaison1 != "" && PersonnageComparaison2 != "") {
-        TailleGraph = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().top) + 10;
+        // TailleGraph = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().top);
         // let NombreTailleHorizontal = document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().right - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().left;
-        document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraph);
+
+        document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique+8);
         // document.querySelector(".SVGDeLaComparaison").style += "height:" + TailleGraph + "px";
     }
 }
