@@ -721,14 +721,15 @@ function jffdsfsdf() {
     let PersonnageEgalitéCompteur = 0
     let compteur = 1;
     let compteur2 = 1;
+    let compteur3 = 1;
+    let compteur4 = 1;
 
-    let output = `<svg height="650" width="500">
+    let output = `<svg class="SVGDeLaComparaison" height="650" width="500">
                     <polyline points="`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
         output += (compteur * 50) + "," + (650 - valeur) + ", "
         compteur++
-        // console.log(stat + " est de : " + valeur)
         StatPersoSelectionneGlobal[stat] = valeur
     })
     output += `" style="fill:none;stroke:green;stroke-width:3" /><polyline points="`
@@ -745,8 +746,19 @@ function jffdsfsdf() {
         })
 
     })
-    output += `" style="fill:none;stroke:red;stroke-width:3" />
-                </svg>`
+
+    output += `" style="fill:none;stroke:red;stroke-width:3" />`
+
+    Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
+        output += `<circle cx='${(compteur3 * 50)}' cy='${(650 - valeur)}' r='4' fill='#727400' class='" + key + "'/>`
+        compteur3++
+    })
+
+    Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
+        output += `<circle cx='${(compteur4 * 50)}' cy='${(650 - valeur)}' r='4' fill='#727400' class='" + key + "'/>`
+        compteur4++
+    })
+    output += `</svg>`
     // var StatPersoSelectionneGlobal = (StatPersoSelectionne1 + StatPersoSelectionne2)
 
     // transform: translateX(" + (7.5 + 4.5 * compteur) + "%)
@@ -863,9 +875,13 @@ function DefinitionTaillePage() {
     // Calcule de la place que prendra la zone de scroll en fonction de la taille visibile de la fenetre
     let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
     let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
+    // console.log(NombreTailleVertical)
 
     // Modification de la taille de la zone du milieu ou on peut scroll
-    document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
+    if (CategorieDeLaPage == "CHAMPIONS")
+        document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
+    else if (CategorieDeLaPage == "COMPARAISON")
+        document.querySelector(".SVGDeLaComparaison").style = "height:" + NombreTailleVertical + "px";
 }
 
 
