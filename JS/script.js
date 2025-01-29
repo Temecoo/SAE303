@@ -728,6 +728,8 @@ function jffdsfsdf() {
     let compteur3 = 1;
     let compteur4 = 1;
 
+    // chercher le nombre le plus grand et faire 650 divisé par ce nombre pour obtenir le ratio de ce graph
+
     let output = `<svg class="SVGDeLaComparaison">
                     <polyline points="`
 
