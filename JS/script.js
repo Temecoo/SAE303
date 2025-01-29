@@ -5,7 +5,7 @@ var StatPersoSelectionneGlobal = {};
 let LePersoSéléctionné = "";
 var PersonnageComparaison1 = "";
 var PersonnageComparaison2 = "";
-let DirectionFlecheFiltrageRole = "BAS";
+// let DirectionFlecheFiltrageRole = "BAS";
 let nbChampions = 0;
 var RoleSelectionne = "";
 let TopLane = "FALSE";
@@ -529,17 +529,17 @@ function Categorie() {
 
 // document.querySelector(".FiltrageRole").addEventListener("click", ApparitionFiltrageRole)
 
-function ApparitionFiltrageRole() {
-    document.querySelector(".PropositionRoleGlobal").classList.toggle("PropositionRoleGlobalActive")
-    if (DirectionFlecheFiltrageRole == "BAS") {
-        document.querySelector(".RoleFleche").innerText = "▲";
-        DirectionFlecheFiltrageRole = "HAUT";
-    }
-    else if (DirectionFlecheFiltrageRole == "HAUT") {
-        document.querySelector(".RoleFleche").innerText = "▼";
-        DirectionFlecheFiltrageRole = "BAS";
-    }
-}
+// function ApparitionFiltrageRole() {
+//     document.querySelector(".PropositionRoleGlobal").classList.toggle("PropositionRoleGlobalActive")
+//     if (DirectionFlecheFiltrageRole == "BAS") {
+//         document.querySelector(".RoleFleche").innerText = "▲";
+//         DirectionFlecheFiltrageRole = "HAUT";
+//     }
+//     else if (DirectionFlecheFiltrageRole == "HAUT") {
+//         document.querySelector(".RoleFleche").innerText = "▼";
+//         DirectionFlecheFiltrageRole = "BAS";
+//     }
+// }
 
 function CompterLesChampions() {
     document.querySelector(".CompterChampions").innerText = "Nombre de champions actuel : " + nbChampions + ""
@@ -557,7 +557,10 @@ function combo(thelist, theinput) {
     RoleSelectionne = thelist.options[idx].value;
     //   theinput.value = content;	
     //console.log(RoleSelectionne)
-    start();
+    if (CategorieDeLaPage == "CHAMPIONS")
+        start();
+    else if (CategorieDeLaPage == "COMPARAISON")
+        VersionComparaisonDesPersonnage();
 }
 
 document.querySelector(".TitrePartieCentre:nth-child(1)").addEventListener("click", ChangementDeLaCategorieDeLaPage)
@@ -621,7 +624,12 @@ function SelectionDesChampionDeLaComparaison() {
     let aze = ""
     champions.forEach(champion => {
         // console.log(champion["name"])
-        aze += `<option value="` + champion["name"] + `">` + champion["name"] + `</option>`
+        if (champion["tags"].includes(RoleSelectionne) || RoleSelectionne == "") {
+
+            aze += `<option value="` + champion["name"] + `">` + champion["name"] + `</option>`
+
+        }
+
     })
     console.log("Selectionne tes champions")
     return aze;
@@ -852,11 +860,11 @@ function EcritureDuHover(champion, LaStat, LeHover) {
 }
 
 function DefinitionTaillePage() {
-    // Calcule de la place que prendra la zone de jeu en fonction de la taille visibile de la fenetre
+    // Calcule de la place que prendra la zone de scroll en fonction de la taille visibile de la fenetre
     let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
     let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
 
-    // Modification de la taille de la zone de jeu
+    // Modification de la taille de la zone du milieu ou on peut scroll
     document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
 }
 
