@@ -526,6 +526,7 @@ svg {
 
 .GraphDeLaComparaison{
     transform: scaleY(-100%);
+    width: 100%;
 }
 
 .SVGDeLaComparaison>*{
@@ -550,4 +551,12 @@ polyline:nth-child(2){
 
 #FiltrageNom::placeholder{
     color: rgb(180, 180, 180);
+}
+
+.PartieComparaisonGlobal{
+    display: flex;
+}
+
+.RondDeLaComparaison{
+    width: 40%;
 }

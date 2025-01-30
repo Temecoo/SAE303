@@ -706,7 +706,7 @@ function VueComparaisonChampion() {
         qsd += "</div>"
         document.querySelector(".VueComparaisonChampion").style = "margin-top: 0px;"
         console.log(qsd)
-        qsd += `<div class="GraphDeLaComparaison">${jffdsfsdf()}</div>`
+        qsd += `<div class="PartieComparaisonGlobal">${jffdsfsdf()}</div>`
     }
     else if (PersonnageComparaison1 == "" || PersonnageComparaison2 == "") {
         console.log("Perso inconnu");
@@ -740,7 +740,7 @@ function jffdsfsdf() {
     if (TailleGraphique == 0) {
         TailleGraphique = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom - 100);
     }
-    let TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left)*0.9)/20);
+    let TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left)*0.6)/20);
 
     console.log(TailleGraphiqueLargeur)
 
@@ -762,7 +762,7 @@ function jffdsfsdf() {
     console.log("Ratio" + Ratio)
     // chercher le nombre le plus grand et faire 650 divisé par ce nombre pour obtenir le ratio de ce graph
 
-    let output = `<svg class="SVGDeLaComparaison">
+    let output = `<div class="GraphDeLaComparaison"><svg class="SVGDeLaComparaison">
                     <polyline points="`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
@@ -796,13 +796,15 @@ function jffdsfsdf() {
         output += `<circle cx='${(compteur4 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur4++
     })
-    output += `</svg>`
+    output += `</svg></div>`
     // var StatPersoSelectionneGlobal = (StatPersoSelectionne1 + StatPersoSelectionne2)
 
     // transform: translateX(" + (7.5 + 4.5 * compteur) + "%)
 
     console.log(Object.entries(StatPersoSelectionneGlobal))
 
+    output += `<div class="RondDeLaComparaison"><svg width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
+        
     Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
         if (valeur > 0) {
             // ajoute les points du svg
@@ -817,8 +819,15 @@ function jffdsfsdf() {
             // output += (compteur * 50) + "," + (10) + ", "
             Personnage2Compteur++
         }
-        compteur++
+        // compteur++
+        output += `<circle cx="57" cy="57" r="50" stroke="#00FF00" stroke-width="5" 
+                        stroke-dasharray="${Personnage1Compteur} ${20-Personnage1Compteur}" pathLength="20" stroke-dashoffset="0" fill="none"/>
+                    <circle cx="57" cy="57" r="50" stroke="#FF0000" stroke-width="5" 
+                        stroke-dasharray="${Personnage2Compteur} ${20-Personnage2Compteur}" pathLength="20" stroke-dashoffset="${-1*(Personnage1Compteur)}" fill="none"/>
+                    <circle cx="57" cy="57" r="50" stroke="#0000FF" stroke-width="5" 
+                        stroke-dasharray="${PersonnageEgalitéCompteur} ${20-PersonnageEgalitéCompteur}" pathLength="20" stroke-dashoffset="${-1*(Personnage1Compteur + Personnage2Compteur)}" fill="none"/>`
     })
+    output += `</svg></div>`
 
     console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
     console.log("Stat ou le perso 2 à l'avantage : " + Personnage2Compteur)
