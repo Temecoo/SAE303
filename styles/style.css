@@ -563,5 +563,8 @@ polyline:nth-child(2) {
 }
 
 .DansLeRondDeLaComparaison {
-    font-size: 12px;
+    font-size: 8px;
+    width: 80%;
+    text-align: center;
+    margin: auto;
 }

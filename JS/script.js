@@ -16,6 +16,9 @@ let Support = "FALSE";
 let CategorieDeLaPage = "CHAMPIONS"
 let TailleGraph = 0;
 let TailleGraphique = 0;
+let Personnage1Compteur = 0
+let Personnage2Compteur = 0
+let PersonnageEgalitéCompteur = 0
 
 
 //console.log(champions);
@@ -728,14 +731,14 @@ function VueComparaisonChampion() {
 function jffdsfsdf() {
     console.log(Object.entries(StatPersoSelectionne1))
     console.log(Object.entries(StatPersoSelectionne2))
-    let Personnage1Compteur = 0
-    let Personnage2Compteur = 0
-    let PersonnageEgalitéCompteur = 0
     let compteur = 1;
     let compteur2 = 1;
     let compteur3 = 1;
     let compteur4 = 1;
     let PlusGrandeValeur = 1
+    Personnage1Compteur = 0
+    Personnage2Compteur = 0
+    PersonnageEgalitéCompteur = 0
     if (TailleGraphique == 0) {
         TailleGraphique = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom - 100);
     }
@@ -827,7 +830,7 @@ function jffdsfsdf() {
                         stroke-dasharray="${Personnage2Compteur} ${20 - Personnage2Compteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur)}" fill="none"/>
                     <circle cx="57" cy="57" r="50" stroke="#0000FF" stroke-width="5" 
                         stroke-dasharray="${PersonnageEgalitéCompteur} ${20 - PersonnageEgalitéCompteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur + Personnage2Compteur)}" fill="none"/>
-                    <foreignObject x="0" y="45" width="100%" height="100%"><div class="DansLeRondDeLaComparaison">fezfzefezfze</div></foreignObject>`
+                    <foreignObject x="0" y="45" width="100%" height="100%"><div class="DansLeRondDeLaComparaison"></div></foreignObject>`
     output += `</svg></div>`
 
     console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
@@ -957,7 +960,8 @@ function RedimentionPage() {
 function ActualisationDeLaPageComparaison() {
     console.log(document.querySelectorAll(".RondComparatif>circle"))
     document.querySelectorAll(".RondComparatif>circle").forEach(element => {
-        console.log(this)
+        // console.log(this)
+        element.addEventListener("mouseleave", HoverDeLaComparaisonPart)
         element.addEventListener("mouseover", HoverDeLaComparaison)
     });
 }
@@ -967,13 +971,18 @@ function HoverDeLaComparaison() {
     // console.log(document.querySelector(".RondComparatif").firstChild)
     // console.log(document.querySelector(".RondComparatif").children[1])
     // console.log(document.querySelector(".RondComparatif").children[2])
-    if (this == document.querySelector(".RondComparatif").children[0]){
-        console.log("ça marche")
+    if (this == document.querySelector(".RondComparatif").children[0]) {
+        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " à " + Personnage1Compteur + " stats plus hautes que " + PersonnageComparaison2
     }
-    else if (this == document.querySelector(".RondComparatif").children[1]){
-        console.log("ça marche 2")
+    else if (this == document.querySelector(".RondComparatif").children[1]) {
+        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison2 + " à " + Personnage2Compteur + " stats plus hautes que " + PersonnageComparaison1
     }
-    else if (this == document.querySelector(".RondComparatif").children[2]){
-        console.log("ça marche 3")
+    else if (this == document.querySelector(".RondComparatif").children[2]) {
+        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " et " + PersonnageComparaison2 + " ont " + PersonnageEgalitéCompteur + " stats à égalitées"
     }
+}
+
+
+function HoverDeLaComparaisonPart() {
+    document.querySelector(".DansLeRondDeLaComparaison").innerText = ""
 }
