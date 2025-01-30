@@ -790,12 +790,12 @@ function jffdsfsdf() {
     output += `" style="fill:none;stroke:#8a1313;stroke-width:3" />`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        output += `<circle cx='${(compteur3 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
+        output += `<circle class="${stat}" cx='${(compteur3 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur3++
     })
 
     Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
-        output += `<circle cx='${(compteur4 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
+        output += `<circle class="${stat}" cx='${(compteur4 * TailleGraphiqueLargeur)}' cy='${(valeur * Ratio)}' r='4' fill='#727400' class='" + key + "'/>`
         compteur4++
     })
     output += `</svg></div>`
@@ -805,7 +805,7 @@ function jffdsfsdf() {
 
     console.log(Object.entries(StatPersoSelectionneGlobal))
 
-    output += `<div class="RondDeLaComparaison"><svg class="RondComparatif" width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
+    output += `<div class="RondDeLaComparaison"><div class="HoverComparatif"></div><svg class="RondComparatif" width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
 
     Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
         if (valeur > 0) {
@@ -824,11 +824,11 @@ function jffdsfsdf() {
         // compteur++
     })
 
-    output += `<circle cx="57" cy="57" r="50" stroke="#00FF00" stroke-width="5" 
+    output += `<circle cx="57" cy="57" r="50" stroke="#00FF00" stroke-width="8" 
                         stroke-dasharray="${Personnage1Compteur} ${20 - Personnage1Compteur}" pathLength="20" stroke-dashoffset="0" fill="none"/>
-                    <circle cx="57" cy="57" r="50" stroke="#FF0000" stroke-width="5" 
+                    <circle cx="57" cy="57" r="50" stroke="#FF0000" stroke-width="8" 
                         stroke-dasharray="${Personnage2Compteur} ${20 - Personnage2Compteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur)}" fill="none"/>
-                    <circle cx="57" cy="57" r="50" stroke="#0000FF" stroke-width="5" 
+                    <circle cx="57" cy="57" r="50" stroke="#0000FF" stroke-width="8" 
                         stroke-dasharray="${PersonnageEgalitéCompteur} ${20 - PersonnageEgalitéCompteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur + Personnage2Compteur)}" fill="none"/>
                     <foreignObject x="0" y="45" width="100%" height="100%"><div class="DansLeRondDeLaComparaison"></div></foreignObject>`
     output += `</svg></div>`
@@ -958,13 +958,18 @@ function RedimentionPage() {
 }
 
 function ActualisationDeLaPageComparaison() {
-    console.log(document.querySelectorAll(".RondComparatif>circle"))
+    // console.log(document.querySelectorAll(".RondComparatif>circle"))
     document.querySelectorAll(".RondComparatif>circle").forEach(element => {
         // console.log(this)
         element.addEventListener("mouseleave", HoverDeLaComparaisonPart)
         element.addEventListener("mouseover", HoverDeLaComparaison)
     });
+    document.querySelectorAll(".SVGDeLaComparaison>circle").forEach(element => {
+        element.addEventListener("mouseleave", HoverDesPointsComparatifsPart)
+        element.addEventListener("mouseover", HoverDesPointsComparatifs)
+    })
 }
+
 
 function HoverDeLaComparaison() {
     // console.log(this)
@@ -982,7 +987,38 @@ function HoverDeLaComparaison() {
     }
 }
 
-
 function HoverDeLaComparaisonPart() {
     document.querySelector(".DansLeRondDeLaComparaison").innerText = ""
+}
+
+function HoverDesPointsComparatifs() {
+    let LaStat = this.classList[0]
+    console.log(LaStat)
+    let output = ""
+    DéfinitionStat.forEach(DefStat => {
+        if (DefStat.Name == LaStat) {
+            Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
+                if (LaStat == stat) {
+                    output += `<h3 class="HoverComparatifTitre">${DefStat["Traduction"]}</h3><div class="HoverComparatifPerso"><div class="HoverComparatifPerso1"><b>${PersonnageComparaison1}</b> possède <b>${valeur}</b> point en ${stat}</div>`
+                }
+            })
+            Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
+                if (LaStat == stat) {
+                    output += `<div class="HoverComparatifPerso1"><b>${PersonnageComparaison2}</b> possède <b>${valeur}</b> point en ${stat}</div></div>`
+                }
+            })
+
+            output += `<h3 class="HoverComparatifDefStatTitre">Déscription</h3><div class="HoverComparatifDefStat">${DefStat["Définition"]}</div>`
+        }
+    })
+
+
+
+    document.querySelector(".HoverComparatif").style = "display: block"
+    document.querySelector(".HoverComparatif").innerHTML = output
+}
+
+function HoverDesPointsComparatifsPart() {
+    document.querySelector(".HoverComparatif").innerHTML = ""
+    document.querySelector(".HoverComparatif").style = "display: none"
 }

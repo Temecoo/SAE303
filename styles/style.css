@@ -565,6 +565,41 @@ polyline:nth-child(2) {
 .DansLeRondDeLaComparaison {
     font-size: 8px;
     width: 80%;
-    text-align: center;
+    /* text-align: center; */
     margin: auto;
+}
+
+.HoverComparatif {
+    background-color: #000212;
+    padding: 8px;
+    width: 15%;
+    border: solid #F6FF00 1px;
+    position: absolute;
+    margin-top: 64px;
+    display: none;
+}
+
+.HoverComparatifTitre{
+    font-family: Montserrat-bold;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+.HoverComparatifPerso{
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.HoverComparatifDefStat{
+    text-align: start;
+}
+
+.HoverComparatifDefStatTitre{
+    text-align: start;
+    font-family: Montserrat-bold;
+    margin-top: 0;
+    margin-bottom: 0;
 }
