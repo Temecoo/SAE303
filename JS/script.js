@@ -55,7 +55,11 @@ function MoyenneStats() {
     })
     //console.log(sommes);
     Object.entries(sommes).forEach(([stat, valeur]) => {
-        document.querySelector(".MoyenneDesStats").innerHTML += "<div>" + stat + " : " + valeur + "</div>"
+        DéfinitionStat.forEach(DefStat => {
+            if (DefStat.Name == stat) {
+        document.querySelector(".MoyenneDesStats").innerHTML += "<div>" + DefStat["Traduction"] + " : " + valeur + "</div>"
+            }
+        })
     })
 
     CompterLesChampions();
@@ -253,9 +257,12 @@ function htmlStats(champion) {
         BotLane = "TRUE"
     }
     output += "</div><h3 class='ClassePersonnageSelectionne'>Catégorie</h3><div>"
+
     champion["tags"].forEach(Categories => {
         output += "<p>" + Categories + "</p>"
     });
+
+
     output += `</div></div><div class="LeHoverDuGraph">ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef ryrtyertzef </div>`
 
 
@@ -305,30 +312,38 @@ function DifferenceGraphique(champion) {
         //   if(key == stat){
         //console.log(Math.abs(value - valeur) * 100 / valeur)
         //console.log(100 - (Math.abs(value - valeur) * 100 / valeur))
-        if (Math.round(value - valeur) > 0) {
-            zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-384px);'>" + key + "</text>"
-            // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px'>
-            //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
-            //         </foreignObject>`
-        }
-        else if (Math.round(value - valeur) == 0) {
-            zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-384px);'>" + key + "</text>"
-            // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
-            //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
-            //         </foreignObject>`
-        }
-        else if (Math.round(value - valeur) < 0) {
-            zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
-            // zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
-            zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='32px' text-anchor='end' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-404px);'>" + key + "</text>"
-            console.log(document.querySelector(".TitreBarreGraphique"))
 
-            // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
-            //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
-            //         </foreignObject>`
-        }
+        DéfinitionStat.forEach(DefStat => {
+            if (DefStat.Name == key) {
+
+
+                if (Math.round(value - valeur) > 0) {
+                    zqsd += "<path d='M3 394V0' stroke='#006600' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(-2px);'/>"
+                    zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='28px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-384px);'>" + DefStat["Traduction"] + "</text>"
+                    // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px'>
+                    //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
+                    //         </foreignObject>`
+                }
+                else if (Math.round(value - valeur) == 0) {
+                    zqsd += "<circle cx='0' cy='394' r='16' fill='#727400' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%);'/>"
+                    zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='28px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-384px);'>" + DefStat["Traduction"] + "</text>"
+                    // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
+                    //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
+                    //         </foreignObject>`
+                }
+                else if (Math.round(value - valeur) < 0) {
+                    zqsd += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
+                    // zqsd += "<text class='TitreBarreGraphique' x='0' y='394' font-family='Montserrat' font-size='32px' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateY(-50%) translateX(-50%);'>" + key + "</text>"
+                    zqsd += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='28px' text-anchor='end' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-404px);'>" + DefStat["Traduction"] + "</text>"
+                    console.log(document.querySelector(".TitreBarreGraphique"))
+
+                    // zqsd += `<foreignObject x="0" y="0" width="160" height="160" font-size='32px' style='transform: translateX(` + (7.5 + 4.5 * compteur) + `%) translateX(-394px);'>
+                    //             <div class="DescriptionStatSVG">La stat de ${key} est égal à ${value}</div>
+                    //         </foreignObject>`
+                }
+
+            }
+        });
         // else if (Math.round(value - valeur) == 0) {
         //     zqsd += "<div class=" + key + ">La stat de <b>" + key + "</b> est pile à la moyenne : " + (Math.round(value - valeur)) + "</div>"
         // }
@@ -918,7 +933,7 @@ function EcritureDuHover(champion, LaStat, LeHover) {
         if (DefStat.Name == LaStat) {
             // document.querySelector(".DescriptionDuHover").innerHTML = DefStat.Définition
             console.log(DefStat["Définition"])
-            LeHover.innerHTML = `<div class='TitreDuHover'> ${LaStat} </div><div> ${champion["name"]} possède ${champion["stats"][LaStat]} points en ${LaStat} </div><div class='DescriptionDuHover'> ${DefStat["Définition"]} </div>`
+            LeHover.innerHTML = `<div class='TitreDuHover'> ${DefStat["Traduction"]} </div><div> ${champion["name"]} possède ${champion["stats"][LaStat]} points en ${DefStat["Traduction"]} </div><div class='DescriptionDuHover'> ${DefStat["Définition"]} </div>`
         }
     })
     // console.log(champion["name"] + " possède " + champion["stats"][LaStat] + " en " + LaStat)

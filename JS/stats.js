@@ -21,7 +21,7 @@ const DéfinitionStat = [
     },
     movespeed={
         "Name":"movespeed",
-        "Traduction": "Vitesse de déplacement",
+        "Traduction": "Vitesse",
         "Définition": "C'est la vitesse du champion."
     },
     armor={
@@ -41,62 +41,62 @@ const DéfinitionStat = [
     },
     spellblockperlevel={
         "Name":"spellblockperlevel",
-        "Traduction": "Armure magique par niveau",
+        "Traduction": "Armure magique/niveau",
         "Définition": "C'est la résistance que le champion gagne contre les attaques magiques en montant de niveau."
     },
     attackrange={
         "Name":"attackrange",
-        "Traduction": "Portée d'attaque",
+        "Traduction": "Portée",
         "Définition": "C'est la porté du champion, plus elle est grande plus le champion peut attaquer loin."
     },
     hpregen={
         "Name":"hpregen",
-        "Traduction": "Régénération de PV",
+        "Traduction": "PV par seconde",
         "Définition": "C'est le nombre de point de vie que le champion régénère par seconde."
     },
     hpregenperlevel={
         "Name":"hpregenperlevel",
-        "Traduction": "Régénération de PV par niveau",
+        "Traduction": "PV/seconde par niveau",
         "Définition": "C'est le nombre de points de vie que le champion se met a régénérer en plus a chaque niveau"
     },
     mpregen={
         "Name":"mpregen",
-        "Traduction": "Régénération de mana",
+        "Traduction": "Mana par seconde",
         "Définition": "C'est le nombre de point de magie que le champion régénère par seconde."
     },
     mpregenperlevel={
         "Name":"mpregenperlevel",
-        "Traduction": "Régénération de mana par niveau",
+        "Traduction": "Mana/seconde par niveau",
         "Définition": "C'est le nombre de points de magie que le champion se met a régénérer en plus a chaque niveau"
     },
     crit={
         "Name":"crit",
-        "Traduction": "Coup critique",
+        "Traduction": "Critique",
         "Définition": "C'est les chances de faire un coup critique en attaquant. Certains objets achetables lors des parties font augmenter ce chiffre."
     },
     critperlevel={
         "Name":"critperlevel",
-        "Traduction": "Coup critique par niveau",
+        "Traduction": "Critique par niveau",
         "Définition": "C'est les chances de faire un coup critique que le champion obtient en montant de niveau. Certains objets achetables lors des parties font augmenter ce chiffre."
     },
     attackdamage={
         "Name":"attackdamage",
-        "Traduction": "Dégat d'attaque",
+        "Traduction": "Dégat",
         "Définition": "C'est la puissance du champion. Les dégats sont calculés avec ce chiffre et celui de la résistance physique ou magique de l'adversaire."
     },
     attackdamageperlevel={
         "Name":"attackdamageperlevel",
-        "Traduction": "Dégat d'attaque par niveau",
+        "Traduction": "Dégat par niveau",
         "Définition": "C'est la puissance que le champion gagne a chaque niveau."
     },
     attackspeedperlevel={
         "Name":"attackspeedperlevel",
-        "Traduction": "Vitesse d'attaque par niveau",
+        "Traduction": "Vitesse de tir par niveau",  
         "Définition": "C'est la vitesse d'attaque que le champion gagne par niveau"
     },
     attackspeed={
         "Name":"attackspeed",
-        "Traduction": "Vitesse d'attaque",
+        "Traduction": "Vitesse de tir",
         "Définition": "C'est la vitesse d'attaque du champion. Certains objets achetables lors des parties font augmenter ce chiffre."
     }
 ]
