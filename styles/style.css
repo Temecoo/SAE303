@@ -611,6 +611,10 @@ polyline:nth-child(2) {
     display: none;
 }
 
+.FiltrageRole3{
+    display: none;
+}
+
 @media screen and (max-height: 1000px) {
     .MoyenneDesStats {
         gap: 8px;
@@ -695,6 +699,15 @@ polyline:nth-child(2) {
 
     .PartieCentre {
         grid-column: 1 / 4;
+    }
+
+    .FiltrageRole3{
+        display: block;
+    }
+
+    .HeaderDroite{
+        display: flex;
+        gap: 16px;
     }
 
     /* .ScrollHere {

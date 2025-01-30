@@ -57,7 +57,7 @@ function MoyenneStats() {
     Object.entries(sommes).forEach(([stat, valeur]) => {
         DéfinitionStat.forEach(DefStat => {
             if (DefStat.Name == stat) {
-        document.querySelector(".MoyenneDesStats").innerHTML += "<div>" + DefStat["Traduction"] + " : " + valeur + "</div>"
+                document.querySelector(".MoyenneDesStats").innerHTML += "<div>" + DefStat["Traduction"] + " : " + valeur + "</div>"
             }
         })
     })
@@ -945,6 +945,7 @@ function DefinitionTaillePage() {
     let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
     let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
     // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
+
     console.log(NombreTailleVertical)
 
     // Modification de la taille de la zone du milieu ou on peut scroll
@@ -958,6 +959,7 @@ function DefinitionTaillePage() {
         document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique + 8);
         // document.querySelector(".SVGDeLaComparaison").style += "height:" + TailleGraph + "px";
         ActualisationDeLaPageComparaison()
+
     }
 }
 
@@ -1041,14 +1043,14 @@ function HoverDesPointsComparatifsPart() {
 document.querySelector(".HeaderTablette").addEventListener("click", MenuHeader)
 
 function MenuHeader() {
-    document.querySelector(".MenuDuCote").style="transform: translateX(0%);"
-    document.querySelector(".CacheMenu").style="display: block; opacity: 80%;"
+    document.querySelector(".MenuDuCote").style = "transform: translateX(0%);"
+    document.querySelector(".CacheMenu").style = "display: block; opacity: 80%;"
 }
 
 document.querySelector(".CroixMenu").addEventListener("click", MenuHeaderFermer)
 
 function MenuHeaderFermer() {
-    document.querySelector(".MenuDuCote").style="transform: translateX(105%);"
-    document.querySelector(".CacheMenu").style="display: none; opacity: 0%;"
+    document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
+    document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
 }
 

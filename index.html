@@ -171,7 +171,20 @@
                             <div class="ImageFiltreur"><img src="img/Bot lane.png" alt="Logo de la bot lane"></div>
                             <div class="ImageFiltreur"><img src="img/Support.png" alt="Logo du support"></div>
                         </div>
-                        <input type="text" id="FiltrageNom" name="FiltrageNom" placeholder="Nom du champion" />
+                        <div class="HeaderDroite">
+                            <div class="FiltrageRole3">
+                                <select class="FiltrageRole" name="thelist" onChange="combo(this, 'theinput')">
+                                    <option value="">Tout les roles</option>
+                                    <option value="Tank">Tank</option>
+                                    <option value="Support">Support</option>
+                                    <option value="Mage">Mage</option>
+                                    <option value="Assassin">Assassin</option>
+                                    <option value="Fighter">Fighter</option>
+                                    <option value="Marksman">Marksman</option>
+                                </select>
+                            </div>
+                            <input type="text" id="FiltrageNom" name="FiltrageNom" placeholder="Nom du champion" />
+                        </div>
                     </div>
                 </div>
                 <div class="ScrollHere">
