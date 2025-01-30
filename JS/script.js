@@ -580,7 +580,7 @@ function ChangementDeLaCategorieDeLaPage() {
         start();
         console.log("j'arrive jusque là");
         CategorieDeLaPage = "CHAMPIONS";
-        document.querySelector("#FiltrageNom").style="display: block"
+        document.querySelector("#FiltrageNom").style = "display: block"
     }
 }
 
@@ -594,7 +594,7 @@ function RetourDeLaCategorieDeLaPage() {
         console.log("j'arrive ici aussi");
         VersionComparaisonDesPersonnage();
         CategorieDeLaPage = "COMPARAISON";
-        document.querySelector("#FiltrageNom").style="display: none"
+        document.querySelector("#FiltrageNom").style = "display: none"
     }
 }
 
@@ -723,7 +723,6 @@ function VueComparaisonChampion() {
     // return qsd
     document.querySelector(".VueComparaisonChampion").innerHTML = qsd
     DefinitionTaillePage();
-
 }
 
 function jffdsfsdf() {
@@ -740,7 +739,7 @@ function jffdsfsdf() {
     if (TailleGraphique == 0) {
         TailleGraphique = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom - 100);
     }
-    let TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left)*0.6)/20);
+    let TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left) * 0.6) / 20);
 
     console.log(TailleGraphiqueLargeur)
 
@@ -803,8 +802,8 @@ function jffdsfsdf() {
 
     console.log(Object.entries(StatPersoSelectionneGlobal))
 
-    output += `<div class="RondDeLaComparaison"><svg width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
-        
+    output += `<div class="RondDeLaComparaison"><svg class="RondComparatif" width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
+
     Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
         if (valeur > 0) {
             // ajoute les points du svg
@@ -820,13 +819,15 @@ function jffdsfsdf() {
             Personnage2Compteur++
         }
         // compteur++
-        output += `<circle cx="57" cy="57" r="50" stroke="#00FF00" stroke-width="5" 
-                        stroke-dasharray="${Personnage1Compteur} ${20-Personnage1Compteur}" pathLength="20" stroke-dashoffset="0" fill="none"/>
-                    <circle cx="57" cy="57" r="50" stroke="#FF0000" stroke-width="5" 
-                        stroke-dasharray="${Personnage2Compteur} ${20-Personnage2Compteur}" pathLength="20" stroke-dashoffset="${-1*(Personnage1Compteur)}" fill="none"/>
-                    <circle cx="57" cy="57" r="50" stroke="#0000FF" stroke-width="5" 
-                        stroke-dasharray="${PersonnageEgalitéCompteur} ${20-PersonnageEgalitéCompteur}" pathLength="20" stroke-dashoffset="${-1*(Personnage1Compteur + Personnage2Compteur)}" fill="none"/>`
     })
+
+    output += `<circle cx="57" cy="57" r="50" stroke="#00FF00" stroke-width="5" 
+                        stroke-dasharray="${Personnage1Compteur} ${20 - Personnage1Compteur}" pathLength="20" stroke-dashoffset="0" fill="none"/>
+                    <circle cx="57" cy="57" r="50" stroke="#FF0000" stroke-width="5" 
+                        stroke-dasharray="${Personnage2Compteur} ${20 - Personnage2Compteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur)}" fill="none"/>
+                    <circle cx="57" cy="57" r="50" stroke="#0000FF" stroke-width="5" 
+                        stroke-dasharray="${PersonnageEgalitéCompteur} ${20 - PersonnageEgalitéCompteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur + Personnage2Compteur)}" fill="none"/>
+                    <foreignObject x="0" y="45" width="100%" height="100%"><div class="DansLeRondDeLaComparaison">fezfzefezfze</div></foreignObject>`
     output += `</svg></div>`
 
     console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
@@ -936,8 +937,9 @@ function DefinitionTaillePage() {
         // TailleGraph = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().top);
         // let NombreTailleHorizontal = document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().right - document.querySelector(".SVGDeLaComparaison").getBoundingClientRect().left;
 
-        document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique+8);
+        document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique + 8);
         // document.querySelector(".SVGDeLaComparaison").style += "height:" + TailleGraph + "px";
+        ActualisationDeLaPageComparaison()
     }
 }
 
@@ -952,3 +954,26 @@ function RedimentionPage() {
     DefinitionTaillePage();
 }
 
+function ActualisationDeLaPageComparaison() {
+    console.log(document.querySelectorAll(".RondComparatif>circle"))
+    document.querySelectorAll(".RondComparatif>circle").forEach(element => {
+        console.log(this)
+        element.addEventListener("mouseover", HoverDeLaComparaison)
+    });
+}
+
+function HoverDeLaComparaison() {
+    // console.log(this)
+    // console.log(document.querySelector(".RondComparatif").firstChild)
+    // console.log(document.querySelector(".RondComparatif").children[1])
+    // console.log(document.querySelector(".RondComparatif").children[2])
+    if (this == document.querySelector(".RondComparatif").children[0]){
+        console.log("ça marche")
+    }
+    else if (this == document.querySelector(".RondComparatif").children[1]){
+        console.log("ça marche 2")
+    }
+    else if (this == document.querySelector(".RondComparatif").children[2]){
+        console.log("ça marche 3")
+    }
+}
