@@ -47,7 +47,7 @@ const DéfinitionStat = [
     attackrange={
         "Name":"attackrange",
         "Traduction": "Portée",
-        "Définition": "C'est la porté du champion, plus elle est grande plus le champion peut attaquer loin."
+        "Définition": "C'est la portée du champion, plus elle est grande plus le champion peut attaquer loin."
     },
     hpregen={
         "Name":"hpregen",

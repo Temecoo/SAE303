@@ -27,11 +27,6 @@ main {
 }
 
 main {
-    /* position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0; */
     overflow-y: unset;
 }
 
@@ -579,13 +574,13 @@ polyline:nth-child(2) {
     display: none;
 }
 
-.HoverComparatifTitre{
+.HoverComparatifTitre {
     font-family: Montserrat-bold;
     margin-bottom: 16px;
     margin-top: 0;
 }
 
-.HoverComparatifPerso{
+.HoverComparatifPerso {
     text-align: start;
     display: flex;
     flex-direction: column;
@@ -593,13 +588,126 @@ polyline:nth-child(2) {
     margin-bottom: 16px;
 }
 
-.HoverComparatifDefStat{
+.HoverComparatifDefStat {
     text-align: start;
 }
 
-.HoverComparatifDefStatTitre{
+.HoverComparatifDefStatTitre {
     text-align: start;
     font-family: Montserrat-bold;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.HeaderTablette {
+    display: none;
+}
+
+.MenuDuCote {
+    display: none;
+}
+
+.CacheMenu {
+    display: none;
+}
+
+@media screen and (max-height: 1000px) {
+    .MoyenneDesStats {
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .CompteurRoleGlobal {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .GraphRole {
+        transform: translateY(-10%);
+    }
+
+    .CompterChampions {
+        display: none;
+    }
+
+    .HeaderCategories {
+        display: none;
+    }
+
+    .HeaderLogo {
+        width: 20%;
+    }
+
+    .HeaderTablette {
+        display: block;
+        width: 5%;
+    }
+
+    .ContenuHeader {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .MenuDuCote {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #000212;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        gap: 32px;
+        padding-top: 128px;
+        z-index: 50;
+        border-left: solid #F6FF00 1px;
+        transform: translateX(105%);
+        transition: 0.8s;
+    }
+
+    .CacheMenu {
+        background-color: #000212;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 40;
+        opacity: 0%;
+        transition: 0.8s;
+    }
+
+    .CroixMenu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(55px) translateY(16px);
+    }
+
+    .PartieGauche {
+        display: none;
+    }
+
+    .PartieDroite {
+        display: none;
+    }
+
+    .PartieCentre {
+        grid-column: 1 / 4;
+    }
+
+    /* .ScrollHere {
+        height: 100%;
+    } */
+
+    /* html,
+    main {
+        overflow: scroll;
+        height: 100%;
+    } */
+
+    /* main {
+        overflow-y: scroll;
+    } */
 }

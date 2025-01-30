@@ -945,7 +945,7 @@ function DefinitionTaillePage() {
     let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
     let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
     // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
-    // console.log(NombreTailleVertical)
+    console.log(NombreTailleVertical)
 
     // Modification de la taille de la zone du milieu ou on peut scroll
     if (CategorieDeLaPage == "CHAMPIONS") {
@@ -992,13 +992,13 @@ function HoverDeLaComparaison() {
     // console.log(document.querySelector(".RondComparatif").children[1])
     // console.log(document.querySelector(".RondComparatif").children[2])
     if (this == document.querySelector(".RondComparatif").children[0]) {
-        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " à " + Personnage1Compteur + " stats plus hautes que " + PersonnageComparaison2
+        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " a " + Personnage1Compteur + " stats plus hautes que " + PersonnageComparaison2
     }
     else if (this == document.querySelector(".RondComparatif").children[1]) {
-        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison2 + " à " + Personnage2Compteur + " stats plus hautes que " + PersonnageComparaison1
+        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison2 + " a " + Personnage2Compteur + " stats plus hautes que " + PersonnageComparaison1
     }
     else if (this == document.querySelector(".RondComparatif").children[2]) {
-        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " et " + PersonnageComparaison2 + " ont " + PersonnageEgalitéCompteur + " stats à égalitées"
+        document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " et " + PersonnageComparaison2 + " ont " + PersonnageEgalitéCompteur + " stats à égalité"
     }
 }
 
@@ -1014,12 +1014,12 @@ function HoverDesPointsComparatifs() {
         if (DefStat.Name == LaStat) {
             Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
                 if (LaStat == stat) {
-                    output += `<h3 class="HoverComparatifTitre">${DefStat["Traduction"]}</h3><div class="HoverComparatifPerso"><div class="HoverComparatifPerso1"><b>${PersonnageComparaison1}</b> possède <b>${valeur}</b> point en ${stat}</div>`
+                    output += `<h3 class="HoverComparatifTitre">${DefStat["Traduction"]}</h3><div class="HoverComparatifPerso"><div class="HoverComparatifPerso1"><b>${PersonnageComparaison1}</b> possède <b>${valeur}</b> points en ${DefStat["Traduction"]}</div>`
                 }
             })
             Object.entries(StatPersoSelectionne2).forEach(([stat, valeur]) => {
                 if (LaStat == stat) {
-                    output += `<div class="HoverComparatifPerso1"><b>${PersonnageComparaison2}</b> possède <b>${valeur}</b> point en ${stat}</div></div>`
+                    output += `<div class="HoverComparatifPerso1"><b>${PersonnageComparaison2}</b> possède <b>${valeur}</b> points en ${DefStat["Traduction"]}</div></div>`
                 }
             })
 
@@ -1035,5 +1035,20 @@ function HoverDesPointsComparatifs() {
 
 function HoverDesPointsComparatifsPart() {
     document.querySelector(".HoverComparatif").innerHTML = ""
-    document.querySelector(".HoverComparatif").style = "display: none"
+    document.querySelector(".HoverComparatif").style = "display: none; opacity: 80%;"
 }
+
+document.querySelector(".HeaderTablette").addEventListener("click", MenuHeader)
+
+function MenuHeader() {
+    document.querySelector(".MenuDuCote").style="transform: translateX(0%);"
+    document.querySelector(".CacheMenu").style="display: block; opacity: 80%;"
+}
+
+document.querySelector(".CroixMenu").addEventListener("click", MenuHeaderFermer)
+
+function MenuHeaderFermer() {
+    document.querySelector(".MenuDuCote").style="transform: translateX(105%);"
+    document.querySelector(".CacheMenu").style="display: none; opacity: 0%;"
+}
+
