@@ -824,6 +824,9 @@ function jffdsfsdf() {
         TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left) * 0.9) / 20);
     }
 
+    if (TailleGraphique < 300) {
+        TailleGraphique = 300
+    }
 
     console.log(TailleGraphiqueLargeur)
 
@@ -1014,7 +1017,7 @@ function DefinitionTaillePage() {
         NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
     }
     else {
-        NombreTailleVertical = Math.floor(window.innerHeight / 100) * 100 - DebutDeLaZone;
+        NombreTailleVertical = Math.floor(window.innerHeight / 50) * 50 - DebutDeLaZone;
     }
     // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
 
