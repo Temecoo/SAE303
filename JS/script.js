@@ -510,6 +510,11 @@ function Categorie() {
     document.querySelector(".HeaderCategories").children[3].children[1].innerText = "Bot lane : " + (NombreMage + NombreMarksman) + "";
     document.querySelector(".HeaderCategories").children[4].children[1].innerText = "Support : " + NombreSupport + "";
 
+    document.querySelector(".HeaderCategories2").children[0].children[1].innerText = "Top lane : " + (NombreTank + NombreFighter) + "";
+    document.querySelector(".HeaderCategories2").children[1].children[1].innerText = "Jungle : " + (NombreFighter + NombreAssassin) + "";
+    document.querySelector(".HeaderCategories2").children[2].children[1].innerText = "Mid lane : " + (NombreMage + NombreAssassin) + "";
+    document.querySelector(".HeaderCategories2").children[3].children[1].innerText = "Bot lane : " + (NombreMage + NombreMarksman) + "";
+    document.querySelector(".HeaderCategories2").children[4].children[1].innerText = "Support : " + NombreSupport + "";
     //console.log(TableCategorie)
     let NombreCategorie = NombreTank + NombreFighter + NombreMage + NombreAssassin + NombreSupport + NombreMarksman
     //console.log("Nombre de categories : " + NombreCategorie)
@@ -566,6 +571,7 @@ function Categorie() {
 
 function CompterLesChampions() {
     document.querySelector(".CompterChampions").innerText = "Nombre de champions actuel : " + nbChampions + ""
+    document.querySelector(".CompterChampions2").innerText = "Nombre de champions actuel : " + nbChampions + ""
 }
 
 // var idx = thelist.selectedIndex;
@@ -648,6 +654,58 @@ function VersionComparaisonDesPersonnage() {
 }
 
 function SelectionDesChampionDeLaComparaison() {
+    if (RoleSelectionne == "") {
+        //console.log((document.querySelector(".PartieCentreLogo").children[1]))
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 100%;"
+    }
+    else if (RoleSelectionne == "Tank") {
+        //console.log((document.querySelector(".PartieCentreLogo").children[1]))
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
+    }
+    else if (RoleSelectionne == "Support") {
+        //console.log((document.querySelector(".PartieCentreLogo").children[1]))
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 100%;"
+    }
+    else if (RoleSelectionne == "Mage") {
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
+    }
+    else if (RoleSelectionne == "Assassin") {
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
+    }
+    else if (RoleSelectionne == "Fighter") {
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
+    }
+    else if (RoleSelectionne == "Marksman") {
+        document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[1].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[2].style = "opacity: 25%;"
+        document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
+        document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
+    }
     // PersonnageComparaison1
     let aze = ""
     champions.forEach(champion => {
@@ -949,9 +1007,15 @@ function EcritureDuHover(champion, LaStat, LeHover) {
 }
 
 function DefinitionTaillePage() {
+    let NombreTailleVertical = 0
     // Calcule de la place que prendra la zone de scroll en fonction de la taille visibile de la fenetre
     let DebutDeLaZone = document.querySelector(".ScrollHere").getBoundingClientRect().top
-    let NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
+    if (window.innerWidth > 1200) {
+        NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
+    }
+    else {
+        NombreTailleVertical = Math.floor(window.innerHeight / 100) * 100 - DebutDeLaZone;
+    }
     // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
 
     console.log(NombreTailleVertical)
@@ -966,6 +1030,7 @@ function DefinitionTaillePage() {
 
         document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique + 8);
         // document.querySelector(".SVGDeLaComparaison").style += "height:" + TailleGraph + "px";
+
         ActualisationDeLaPageComparaison()
 
     }
@@ -978,11 +1043,12 @@ DefinitionTaillePage();
 window.addEventListener("resize", RedimentionPage);
 
 function RedimentionPage() {
-    // On recalcule la taille de la zone de jeu
+    // On recalcule la taille de la taille de la fenetre
     DefinitionTaillePage();
 }
 
 function ActualisationDeLaPageComparaison() {
+
     // console.log(document.querySelectorAll(".RondComparatif>circle"))
     document.querySelectorAll(".RondComparatif>circle").forEach(element => {
         // console.log(this)
