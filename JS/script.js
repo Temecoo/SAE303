@@ -754,10 +754,18 @@ function jffdsfsdf() {
     Personnage1Compteur = 0
     Personnage2Compteur = 0
     PersonnageEgalitéCompteur = 0
+    let TailleGraphiqueLargeur
     if (TailleGraphique == 0) {
         TailleGraphique = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom - 100);
     }
-    let TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left) * 0.6) / 20);
+
+    if (window.innerWidth > 600) {
+        TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left) * 0.6) / 20);
+    }
+    else {
+        TailleGraphiqueLargeur = (((document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().right - document.querySelector(".SelectionDesChampionDeLaComparaisonGlobal").getBoundingClientRect().left) * 0.9) / 20);
+    }
+
 
     console.log(TailleGraphiqueLargeur)
 
