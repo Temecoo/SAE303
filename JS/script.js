@@ -1017,7 +1017,7 @@ function DefinitionTaillePage() {
         NombreTailleVertical = Math.floor(window.innerHeight / 148) * 148 - DebutDeLaZone;
     }
     else {
-        NombreTailleVertical = Math.floor(window.innerHeight / 50) * 50 - DebutDeLaZone;
+        NombreTailleVertical = Math.floor(window.innerHeight / 25) * 25 - DebutDeLaZone;
     }
     // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
 
