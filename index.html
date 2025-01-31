@@ -55,12 +55,13 @@
                 <line x1="100" y1="1" x2="1" y2="100" stroke="white" stroke-width="3" />
             </svg>
         </div>
-        <div class="CategorieMenu">Roles Des Champions</div>
-        <div class="CategorieMenu">Stats moyennes des champions</div>
+        <div class="CategorieMenu1">Accueil</div>
+        <div class="CategorieMenu2">Roles Des Champions</div>
+        <div class="CategorieMenu3">Stats moyennes des champions</div>
     </div>
 
 
-    <main>
+    <!-- <main>  -->
 
         <div class="PartieGauche">
             <div class="ContenuPartieGauche">
@@ -123,7 +124,7 @@
                     </div>
                 </div>
 
-                <div class="FiltreurRoleGlobal">
+                <!-- <div class="FiltreurRoleGlobal">
                     <div class="TitreFiltrageRole">Filtre</div>
                     <div class="FiltrageRole2">
                         <select class="FiltrageRole" name="thelist" onChange="combo(this, 'theinput')">
@@ -135,9 +136,9 @@
                             <option value="Fighter">Fighter</option>
                             <option value="Marksman">Marksman</option>
                         </select>
-                    </div>
+                    </div> -->
 
-                    <!-- 
+                <!-- 
                         <div class="RoleChoisit">Tout les roles</div>
                         <div class="RoleFleche">▼</div>
                     </div>
@@ -150,7 +151,7 @@
                         <div class="PropositionRole">Fighter</div>
                         <div class="PropositionRole">Marksman</div>
                     </div> -->
-                </div>
+                <!-- </div> -->
 
             </div>
         </div>
@@ -172,18 +173,25 @@
                             <div class="ImageFiltreur"><img src="img/Support.png" alt="Logo du support"></div>
                         </div>
                         <div class="HeaderDroite">
-                            <div class="FiltrageRole3">
-                                <select class="FiltrageRole" name="thelist" onChange="combo(this, 'theinput')">
-                                    <option value="">Tout les roles</option>
-                                    <option value="Tank">Tank</option>
-                                    <option value="Support">Support</option>
-                                    <option value="Mage">Mage</option>
-                                    <option value="Assassin">Assassin</option>
-                                    <option value="Fighter">Fighter</option>
-                                    <option value="Marksman">Marksman</option>
-                                </select>
+                            <div class="FiltreurRoleGlobal">
+                                <div class="TitreFiltrageRole">Filtres</div>
+                                <div class="ToutLesFiltres">
+                                    <div class="FiltrageRole2">
+                                        <select class="FiltrageRole" name="thelist" onChange="combo(this, 'theinput')">
+                                            <option value="">Tout les roles</option>
+                                            <option value="Tank">Tank</option>
+                                            <option value="Support">Support</option>
+                                            <option value="Mage">Mage</option>
+                                            <option value="Assassin">Assassin</option>
+                                            <option value="Fighter">Fighter</option>
+                                            <option value="Marksman">Marksman</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" id="FiltrageNom" name="FiltrageNom"
+                                        placeholder="Nom du champion" />
+                                </div>
                             </div>
-                            <input type="text" id="FiltrageNom" name="FiltrageNom" placeholder="Nom du champion" />
+
                         </div>
                     </div>
                 </div>
@@ -199,7 +207,7 @@
                 <div class="MoyenneDesStats"></div>
             </div>
         </div>
-    </main>
+    <!-- </main> -->
     <script src="JS/champions.js"></script>
     <script src="JS/stats.js"></script>
     <script src="JS/script.js"></script>

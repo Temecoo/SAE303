@@ -1054,3 +1054,41 @@ function MenuHeaderFermer() {
     document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
 }
 
+document.querySelector(".CacheMenu").addEventListener("click", MenuHeaderFermer)
+
+function MenuHeaderFermer() {
+    document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
+    document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
+}
+
+document.querySelector(".CategorieMenu1").addEventListener("click", ChoixMenu1)
+document.querySelector(".CategorieMenu2").addEventListener("click", ChoixMenu2)
+document.querySelector(".CategorieMenu3").addEventListener("click", ChoixMenu3)
+
+
+function ChoixMenu1() {
+    console.log("CHOIX 1")
+    document.querySelector(".PartieGauche").style = "display: none;"
+    document.querySelector(".PartieDroite").style = "display: none;"
+    document.querySelector(".PartieCentre").style = "display: block;"
+    document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
+    document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
+}
+
+function ChoixMenu2() {
+    console.log("CHOIX 2")
+    document.querySelector(".PartieGauche").style = "display: block;"
+    document.querySelector(".PartieDroite").style = "display: none;"
+    document.querySelector(".PartieCentre").style = "display: none;"
+    document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
+    document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
+}
+
+function ChoixMenu3() {
+    console.log("CHOIX 3")
+    document.querySelector(".PartieGauche").style = "display: none;"
+    document.querySelector(".PartieDroite").style = "display: block;"
+    document.querySelector(".PartieCentre").style = "display: none;"
+    document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
+    document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
+}
