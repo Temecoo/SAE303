@@ -621,6 +621,14 @@ polyline:nth-child(2) {
     text-align: start;
 }
 
+.CompterChampions{
+    display: none;
+}
+
+.HeaderCategories2{
+    display: none;
+}
+
 .HoverComparatifDefStatTitre {
     text-align: start;
     font-family: Montserrat-bold;
@@ -669,8 +677,21 @@ polyline:nth-child(2) {
         display: none;
     }
 
+    .HeaderCategories2 {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+    }
+
     .HeaderLogo {
         width: 20%;
+    }
+
+    .Header2{
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .HeaderTablette {
@@ -771,5 +792,40 @@ polyline:nth-child(2) {
     .PartieDroiteTitre {
         display: flex;
         justify-content: center;
+        background-color: #000121;
+    }
+
+    .HeaderLogo{
+        width: fit-content;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .HeaderTablette{
+        width: 10%;
+    }
+
+    .TitreDifferentePartie{
+        flex-direction: column;
+    }
+
+    .TitrePartieCentre{
+        margin: 0px;
+        font-size: 28px;
+    }
+
+    .SousTitrePartieCentre{
+        display: grid;
+        grid-template-rows: auto auto;
+    }
+
+    .HeaderDroite{
+        grid-row: 1;
+        margin-bottom: 16px;
+        margin-top: 8px;
+    }
+
+    .PartieCentreLogo{
+        grid-row: 2;
     }
 }
