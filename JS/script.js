@@ -1102,7 +1102,7 @@ function HoverDesPointsComparatifs() {
                 }
             })
 
-            output += `<h3 class="HoverComparatifDefStatTitre">Déscription</h3><div class="HoverComparatifDefStat">${DefStat["Définition"]}</div>`
+            output += `<h3 class="HoverComparatifDefStatTitre">Description</h3><div class="HoverComparatifDefStat">${DefStat["Définition"]}</div>`
         }
     })
 

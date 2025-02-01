@@ -9,6 +9,8 @@
 </head>
 
 <body>
+
+    <!-- Header du site -->
     <Header>
         <div class="ContenuHeader">
             <div class="HeaderLogo">
@@ -38,6 +40,7 @@
                     <div>Support : 21</div>
                 </div>
             </div>
+            <!-- Header qui n'apparait que quand le site est en version mobile ou tablette -->
             <div class="HeaderTablette"><svg viewBox="0 0 24 24" fill="none">
                     <path d="M4 18L20 18" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round"></path>
                     <path d="M4 12L20 12" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round"></path>
@@ -47,6 +50,7 @@
 
     </Header>
 
+    <!-- Menu qui est sur tablette et mobile pour pouvoir voir les différentes parties du site -->
     <div class="CacheMenu"></div>
     <div class="MenuDuCote">
         <div class="CroixMenu">
@@ -60,11 +64,9 @@
         <div class="CategorieMenu3">Stats moyennes des champions</div>
     </div>
 
-
-    <!-- <main>  -->
-
     <div class="PartieGauche">
         <div class="ContenuPartieGauche">
+            <!-- Dans la version tablette et mobile, le compteur de champion et de champion pouvant aller sur tel ou tel lane est dans la partie de gauche car le header est devenu trop petit -->
             <div class="Header2">
                 <div class="CompterChampions2">Nombre de champions actuel : 120</div>
                 <div class="HeaderCategories2">
@@ -92,6 +94,7 @@
             </div>
 
             <div class="GraphRole">
+                <!-- Le graphique qui montre le nombre de champion de chaque catégorie -->
                 <div class="MouleATarte">
                     <svg class="Tarte" width="276" height="276" viewBox="0 0 276 276" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -121,6 +124,7 @@
                         <!-- 3 / mage -->
                     </svg>
                 </div>
+                <!-- Affiche en chiffre du nombre de champion de chaque catégorie -->
                 <div class="CompteurRoleGlobal">
                     <div class="CompteurRole">
                         <div class="RondRole"></div>
@@ -149,39 +153,10 @@
                 </div>
             </div>
 
-            <!-- <div class="FiltreurRoleGlobal">
-                    <div class="TitreFiltrageRole">Filtre</div>
-                    <div class="FiltrageRole2">
-                        <select class="FiltrageRole" name="thelist" onChange="combo(this, 'theinput')">
-                            <option value="">Tout les roles</option>
-                            <option value="Tank">Tank</option>
-                            <option value="Support">Support</option>
-                            <option value="Mage">Mage</option>
-                            <option value="Assassin">Assassin</option>
-                            <option value="Fighter">Fighter</option>
-                            <option value="Marksman">Marksman</option>
-                        </select>
-                    </div> -->
-
-            <!-- 
-                        <div class="RoleChoisit">Tout les roles</div>
-                        <div class="RoleFleche">▼</div>
-                    </div>
-                    <div class="PropositionRoleGlobal">
-                        <div class="PropositionRole">Tout les rôles</div>
-                        <div class="PropositionRole">Tank</div>
-                        <div class="PropositionRole">Support</div>
-                        <div class="PropositionRole">Mage</div>
-                        <div class="PropositionRole">assassin</div>
-                        <div class="PropositionRole">Fighter</div>
-                        <div class="PropositionRole">Marksman</div>
-                    </div> -->
-            <!-- </div> -->
-
         </div>
     </div>
 
-
+    <!-- Parte principale du site où l'on peut voir les champions et les comparer entre eux -->
     <div class="PartieCentre">
         <div class="ContenuPartieCentre">
             <div class="PartieCentreQuiBougePas">
@@ -197,6 +172,7 @@
                         <div class="ImageFiltreur"><img src="img/Bot lane.png" alt="Logo de la bot lane"></div>
                         <div class="ImageFiltreur"><img src="img/Support.png" alt="Logo du support"></div>
                     </div>
+                    <!-- Les deux filtres qui peuvent trier les champions en fonction de leurs classes ou de leurs noms -->
                     <div class="HeaderDroite">
                         <div class="FiltreurRoleGlobal">
                             <div class="TitreFiltrageRole">Filtres</div>
@@ -219,19 +195,20 @@
                     </div>
                 </div>
             </div>
+            <!-- L'endroit où l'utilisateur peut scroll, comparer et voir les stats des champions, la majorité du site se passe ici -->
             <div class="ScrollHere">
                 <div class="image"></div>
             </div>
         </div>
     </div>
 
+    <!-- L'endroit où s'affiche les staistiques moyennes des champions -->
     <div class="PartieDroite">
         <div class="PartieDroiteContenu">
             <h2 class="PartieDroiteTitre">Stats moyennes des champions</h2>
             <div class="MoyenneDesStats"></div>
         </div>
     </div>
-    <!-- </main> -->
     <script src="JS/champions.js"></script>
     <script src="JS/stats.js"></script>
     <script src="JS/script.js"></script>

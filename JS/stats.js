@@ -71,12 +71,12 @@ const DéfinitionStat = [
     },
     crit={
         "Name":"crit",
-        "Traduction": "Critique",
+        "Traduction": "Coup critique",
         "Définition": "C'est les chances de faire un coup critique en attaquant. Certains objets achetables lors des parties font augmenter ce chiffre."
     },
     critperlevel={
         "Name":"critperlevel",
-        "Traduction": "Critique par niveau",
+        "Traduction": "Coup critique par niveau",
         "Définition": "C'est les chances de faire un coup critique que le champion obtient en montant de niveau. Certains objets achetables lors des parties font augmenter ce chiffre."
     },
     attackdamage={
