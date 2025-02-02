@@ -333,7 +333,7 @@ function CompterLesChampions() {
 // Quand on écrit dans la div de filtrage des champions en fonction du nom ça relance la fonction start qui démarre la page pour ne faire apparaitre que les champions contenant ce qu'il y a de marqué
 document.querySelector("#FiltrageNom").addEventListener("input", start);
 
-
+// Filtrage pour séléctionner un role et on relance la fonction qui lance l'apparition de la page en fonction du mode dans lequel on était avant
 function combo(thelist, theinput) {
     theinput = document.getElementById(theinput);
     var idx = thelist.selectedIndex;
@@ -345,6 +345,7 @@ function combo(thelist, theinput) {
         VersionComparaisonDesPersonnage();
 }
 
+// Si on clic sur le titre "champions" on change de mode pour aller dans ce mode là mais uniquement si on était dans l'autre mode sinon rien ne se passe
 document.querySelector(".TitrePartieCentre:nth-child(1)").addEventListener("click", ChangementDeLaCategorieDeLaPage)
 
 function ChangementDeLaCategorieDeLaPage() {
@@ -352,12 +353,12 @@ function ChangementDeLaCategorieDeLaPage() {
     this.style = "opacity: 100%"
     if (CategorieDeLaPage == "COMPARAISON") {
         start();
-        console.log("j'arrive jusque là");
         CategorieDeLaPage = "CHAMPIONS";
         document.querySelector("#FiltrageNom").style = "display: block"
     }
 }
 
+// Si on clic sur le titre "comparaison" on change de mode pour aller dans ce mode là mais uniquement si on était dans l'autre mode sinon rien ne se passe
 document.querySelector(".TitrePartieCentre:nth-child(2)").addEventListener("click", RetourDeLaCategorieDeLaPage)
 
 function RetourDeLaCategorieDeLaPage() {
@@ -365,13 +366,13 @@ function RetourDeLaCategorieDeLaPage() {
     this.style = "opacity: 100%"
     if (CategorieDeLaPage == "CHAMPIONS") {
         //LANCER LA FONCTION QUI MET LA PAGE EN VERSION COMPARAISON DE DEUX PERSONNAGES
-        console.log("j'arrive ici aussi");
         VersionComparaisonDesPersonnage();
         CategorieDeLaPage = "COMPARAISON";
         document.querySelector("#FiltrageNom").style = "display: none"
     }
 }
 
+// Mise en page de la version comparaison et on lance des fonctions qui vont faire l'intéractivité de la page
 function VersionComparaisonDesPersonnage() {
     let output = "";
     PersonnageComparaison1 = "";
@@ -401,6 +402,7 @@ function VersionComparaisonDesPersonnage() {
     document.querySelector("#select2").addEventListener("change", kombo);
 }
 
+// On affiche uniquement les logo des lanes où vont les perso séléctionné en fonction du filtrage des roles et on fait apparaitre les choix des personnages aussi en fonction de ce filtrage
 function SelectionDesChampionDeLaComparaison() {
     if (RoleSelectionne == "") {
         document.querySelector(".PartieCentreLogo").children[0].style = "opacity: 100%;"
@@ -451,19 +453,17 @@ function SelectionDesChampionDeLaComparaison() {
         document.querySelector(".PartieCentreLogo").children[3].style = "opacity: 100%;"
         document.querySelector(".PartieCentreLogo").children[4].style = "opacity: 25%;"
     }
-    let aze = ""
+    let output = ""
     champions.forEach(champion => {
         if (champion["tags"].includes(RoleSelectionne) || RoleSelectionne == "") {
 
-            aze += `<option value="` + champion["name"] + `">` + champion["name"] + `</option>`
-
+            output += `<option value="` + champion["name"] + `">` + champion["name"] + `</option>`
         }
-
     })
-    console.log("Selectionne tes champions")
-    return aze;
+    return output;
 }
 
+// On récupère quels champions ont été séléctionnés
 function kombo() {
     if (this.id == "select1") {
         PersonnageComparaison1 = this.value;
@@ -471,23 +471,20 @@ function kombo() {
     else if (this.id == "select2") {
         PersonnageComparaison2 = this.value;
     }
-    console.log(PersonnageComparaison1)
-    console.log(PersonnageComparaison2)
     VueComparaisonChampion();
 }
 
+// On vérifie si les personnages ont été séléctionnés et qu'ils ne soient pas les mêmes. Si c'est le cas on récupère les stats des deux personnages et ont affiche leurs têtes et on lance la fonction suivante. Peut importe ce qui a été séléctionné on lance la fonction de définition de la page
 function VueComparaisonChampion() {
-    let qsd = ""
-    console.log("PersonnageComparaison1 : " + PersonnageComparaison1 + " et PersonnageComparaison2 : " + PersonnageComparaison2)
+    let output = ""
     if (PersonnageComparaison1 != "" && PersonnageComparaison2 != "" && PersonnageComparaison1 != PersonnageComparaison2) {
-        console.log("Perso séléctionné");
-        qsd = "";
-        qsd += "<div class='ImageDuPersoSelectionneGlobal'>"
+        output = "";
+        output += "<div class='ImageDuPersoSelectionneGlobal'>"
         StatPersoSelectionne1 = {}
         StatPersoSelectionne2 = {}
         champions.forEach(champion => {
             if (champion["name"].includes(PersonnageComparaison1)) {
-                qsd += "<div><img class='ImageDuPersoSelectionne' src='" + champion["icon"] + "'></img></div>"
+                output += "<div><img class='ImageDuPersoSelectionne' src='" + champion["icon"] + "'></img></div>"
                 Object.entries(champion.stats).forEach(([stat, valeur]) => {
                     if (StatPersoSelectionne1[stat]) {
                         StatPersoSelectionne1[stat] += valeur
@@ -500,7 +497,7 @@ function VueComparaisonChampion() {
         })
         champions.forEach(champion => {
             if (champion["name"].includes(PersonnageComparaison2)) {
-                qsd += "<div><img class='ImageDuPersoSelectionne' src='" + champion["icon"] + "'></img></div>"
+                output += "<div><img class='ImageDuPersoSelectionne' src='" + champion["icon"] + "'></img></div>"
                 Object.entries(champion.stats).forEach(([stat, valeur]) => {
                     if (StatPersoSelectionne2[stat]) {
                         StatPersoSelectionne2[stat] += valeur
@@ -511,27 +508,26 @@ function VueComparaisonChampion() {
                 })
             }
         })
-        qsd += "</div>"
+        output += "</div>"
         document.querySelector(".VueComparaisonChampion").style = "margin-top: 0px;"
-        console.log(qsd)
-        qsd += `<div class="PartieComparaisonGlobal">${jffdsfsdf()}</div>`
+        output += `<div class="PartieComparaisonGlobal">${ComparaisonDesChampionsChoisit()}</div>`
     }
     else if (PersonnageComparaison1 == "" || PersonnageComparaison2 == "") {
-        console.log("Perso inconnu");
-        qsd = "";
-        qsd += "<h3 class='PersonnageNonSelectionne'>Veuillez choisir deux personnages</h3>";
+        output = "";
+        output += "<h3 class='PersonnageNonSelectionne'>Veuillez choisir deux personnages</h3>";
         document.querySelector(".VueComparaisonChampion").style = "margin-top: 128px;"
     }
     else if (PersonnageComparaison1 == PersonnageComparaison2) {
-        qsd = "";
-        qsd += "<h3 class='PersonnageNonSelectionne'>Vous ne pouvez pas comparer un personnage à lui même</h3>";
+        output = "";
+        output += "<h3 class='PersonnageNonSelectionne'>Vous ne pouvez pas comparer un personnage à lui même</h3>";
         document.querySelector(".VueComparaisonChampion").style = "margin-top: 128px;"
     }
-    document.querySelector(".VueComparaisonChampion").innerHTML = qsd
+    document.querySelector(".VueComparaisonChampion").innerHTML = output
     DefinitionTaillePage();
 }
 
-function jffdsfsdf() {
+// Calcule de la zone d'affichage
+function ComparaisonDesChampionsChoisit() {
     console.log(Object.entries(StatPersoSelectionne1))
     console.log(Object.entries(StatPersoSelectionne2))
     let compteur = 1;
@@ -558,11 +554,7 @@ function jffdsfsdf() {
         TailleGraphique = 300
     }
 
-    console.log(TailleGraphiqueLargeur)
-
-    console.log(document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom)
-    console.log(document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom)
-
+    // puis on fait le graphique avec les barres et les points de la comparaison
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
         if (valeur > PlusGrandeValeur)
             PlusGrandeValeur = valeur
@@ -572,10 +564,7 @@ function jffdsfsdf() {
             PlusGrandeValeur = valeur
     })
 
-    console.log("PlusGrandeValeur " + PlusGrandeValeur + " et TailleGraphique " + TailleGraphique)
     let Ratio = TailleGraphique / PlusGrandeValeur
-
-    console.log("Ratio" + Ratio)
 
     let output = `<div class="GraphDeLaComparaison"><svg class="SVGDeLaComparaison">
                     <polyline points="`
@@ -616,6 +605,7 @@ function jffdsfsdf() {
 
     output += `<div class="RondDeLaComparaison"><div class="HoverComparatif"></div><svg class="RondComparatif" width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
 
+    // puis on compte combien de stat sont supérieur chez chaque champions et combien sont a égalité
     Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
         if (valeur > 0) {
             Personnage1Compteur++
@@ -628,6 +618,7 @@ function jffdsfsdf() {
         }
     })
 
+    // Et enfin on fait le rond en fonction des différence de stat entre les deux champions choisit
     output += `<circle cx="57" cy="57" r="50" stroke="#00FF00" stroke-width="8" 
                         stroke-dasharray="${Personnage1Compteur} ${20 - Personnage1Compteur}" pathLength="20" stroke-dashoffset="0" fill="none"/>
                     <circle cx="57" cy="57" r="50" stroke="#FF0000" stroke-width="8" 
@@ -637,13 +628,10 @@ function jffdsfsdf() {
                     <foreignObject x="0" y="45" width="100%" height="100%"><div class="DansLeRondDeLaComparaison"></div></foreignObject>`
     output += `</svg></div>`
 
-    console.log("Stat ou le perso 1 à l'avantage : " + Personnage1Compteur)
-    console.log("Stat ou le perso 2 à l'avantage : " + Personnage2Compteur)
-    console.log("Stat ou le perso 1 et 2 sont a égalité : " + PersonnageEgalitéCompteur)
-
     return output
 }
 
+// On fait les hover des graph des perso pour que l'on puisse voir ce que représente les stat pour tout le monde en passant la sourie par dessus
 function ActualisationDeLaPage() {
     document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
         element.addEventListener("mouseover", HoverDuGraphArrive)
@@ -670,6 +658,7 @@ function ActualisationDeLaPage() {
     });
 }
 
+// On récupère plusieurs information en regardant les parents de l'endroit où l'on est, j'ai pas réussi a faire plus opti mais ça marche donc bon
 function HoverDuGraphArrive() {
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
@@ -678,6 +667,8 @@ function HoverDuGraphArrive() {
     champions.forEach(champion => {
         if (champion["name"].includes(LePersoSéléctionné) && LaStat != undefined) {
 
+            // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
             // dans la ligne du haut qui est en commentaire j'utilise le point qui sert a rentrer dans le nouveau tableau et "LaStat" n'est pas un tableau mais une suite de caractère qui change au hover sur le graphique pour prendre le nom de la stat qu'on survole donc impossible de rentrer dedans
             // dans la ligne du bas j'utilise les crochet avec les guillemets pour rentrer aussi dans le tableau mais en utilisant une suite de caractère ce qui permet de faire passer incognito "LaStat" pour lequel il va juste lire ce qu'il contient car je n'ai pas mis les guillemets et il utilise comme suite de caractère ce qu'il contient
 
@@ -685,18 +676,20 @@ function HoverDuGraphArrive() {
 
             // console.log(champion.stats.LaStat)
             // console.log(champion["stats"][LaStat])
+
+            // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            // J'envoie les information dont j'aurais besoin dans la fonction qui va vraiment écrire ce qui aura dans le hover
             EcritureDuHover(champion, LaStat, LeHover)
         }
     })
 }
 
+// La même chose que la fonction au dessus mais si la sourie passe par dessus du texte et pas la barre car ça change un peu la ligne des parents a suivre
 function HoverDuGraphArriveText() {
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
     let LaStat = this.previousSibling.classList[0]
-    console.log(LeHover)
-    console.log(LePersoSéléctionné)
-    console.log(LaStat)
 
     champions.forEach(champion => {
         if (champion["name"].includes(LePersoSéléctionné) && LaStat != undefined) {
@@ -705,23 +698,25 @@ function HoverDuGraphArriveText() {
     })
 }
 
+// La vérification est juste pour que ça ne soit pas lancé au passage par dessus la barre qui fait la séparation entre le positif et le négatif
 function HoverDuGraphPart() {
     if (this.classList[0] != undefined) {
         document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
     }
 }
 
+// J'écrit le texte qui sera dans la div qui va apparaitre et le met un peu en page
 function EcritureDuHover(champion, LaStat, LeHover) {
     LeHover.classList.add("LeHoverDuGraphAffiche")
-    console.log(LeHover)
     DéfinitionStat.forEach(DefStat => {
         if (DefStat.Name == LaStat) {
-            console.log(DefStat["Définition"])
             LeHover.innerHTML = `<div class='TitreDuHover'> ${DefStat["Traduction"]} </div><div> ${champion["name"]} possède ${champion["stats"][LaStat]} points en ${DefStat["Traduction"]} </div><div class='DescriptionDuHover'> ${DefStat["Définition"]} </div>`
         }
     })
 }
 
+
+// Je définie la taille de la page dans les deux mode, j'ai encore un peu de mal a le faire pour la page en version "comparaison"
 function DefinitionTaillePage() {
     let NombreTailleVertical = 0
     // Calcule de la place que prendra la zone de scroll en fonction de la taille visibile de la fenetre
@@ -732,7 +727,6 @@ function DefinitionTaillePage() {
     else {
         NombreTailleVertical = Math.floor(window.innerHeight / 25) * 25 - DebutDeLaZone;
     }
-    // let NombreTailleVerticalGraphique = Math.floor(window.innerHeight)- DebutDeLaZone;
 
     console.log(NombreTailleVertical)
 
@@ -745,7 +739,6 @@ function DefinitionTaillePage() {
         document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique + 8);
 
         ActualisationDeLaPageComparaison()
-
     }
 }
 
@@ -760,19 +753,21 @@ function RedimentionPage() {
     DefinitionTaillePage();
 }
 
+// Je lance les fonctions qui feront apparaitre le hover de la page de comparaison dans le même ésprit que ceux de la page des champions
 function ActualisationDeLaPageComparaison() {
 
     document.querySelectorAll(".RondComparatif>circle").forEach(element => {
         element.addEventListener("mouseleave", HoverDeLaComparaisonPart)
         element.addEventListener("mouseover", HoverDeLaComparaison)
     });
+
     document.querySelectorAll(".SVGDeLaComparaison>circle").forEach(element => {
         element.addEventListener("mouseleave", HoverDesPointsComparatifsPart)
         element.addEventListener("mouseover", HoverDesPointsComparatifs)
     })
 }
 
-
+// Je fais apparaitre a l'intérieur du cercle la phrase qui correspond a la couleur par dessus laquelle la sourie est et les stats ont été calculé plus haute
 function HoverDeLaComparaison() {
     if (this == document.querySelector(".RondComparatif").children[0]) {
         document.querySelector(".DansLeRondDeLaComparaison").innerText = PersonnageComparaison1 + " a " + Personnage1Compteur + " stats plus hautes que " + PersonnageComparaison2
@@ -785,13 +780,14 @@ function HoverDeLaComparaison() {
     }
 }
 
+// J'enlève juste le texte donc on voit plus rien
 function HoverDeLaComparaisonPart() {
     document.querySelector(".DansLeRondDeLaComparaison").innerText = ""
 }
 
+// Dans le même esprit que pour la page des champions, je récupère la stats sur laquelle on se trouve puis j'affiche pour les deux champions la stats qu'ils ont dedans et met une définition de la stat
 function HoverDesPointsComparatifs() {
     let LaStat = this.classList[0]
-    console.log(LaStat)
     let output = ""
     DéfinitionStat.forEach(DefStat => {
         if (DefStat.Name == LaStat) {
@@ -810,12 +806,11 @@ function HoverDesPointsComparatifs() {
         }
     })
 
-
-
     document.querySelector(".HoverComparatif").style = "display: block"
     document.querySelector(".HoverComparatif").innerHTML = output
 }
 
+// Je fais disparaitre la div apparu dans la fonction au dessus
 function HoverDesPointsComparatifsPart() {
     document.querySelector(".HoverComparatif").innerHTML = ""
     document.querySelector(".HoverComparatif").style = "display: none; opacity: 80%;"
@@ -823,6 +818,7 @@ function HoverDesPointsComparatifsPart() {
 
 document.querySelector(".HeaderTablette").addEventListener("click", MenuHeader)
 
+// Je fais venir le menu en version mobile et tablette au clic sur trois barre se trouvant en haut a droite de leur page
 function MenuHeader() {
     document.querySelector(".MenuDuCote").style = "transform: translateX(0%);"
     document.querySelector(".CacheMenu").style = "display: block; opacity: 80%;"
@@ -830,6 +826,7 @@ function MenuHeader() {
 
 document.querySelector(".CroixMenu").addEventListener("click", MenuHeaderFermer)
 
+// Je fais partir le menu en version mobile et tablette au clic sur la croix se trouvant en haut a droite de leur page
 function MenuHeaderFermer() {
     document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
     document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
@@ -837,6 +834,7 @@ function MenuHeaderFermer() {
 
 document.querySelector(".CacheMenu").addEventListener("click", MenuHeaderFermer)
 
+// Je fais partir le menu en version mobile et tablette au clic en dehors du menu
 function MenuHeaderFermer() {
     document.querySelector(".MenuDuCote").style = "transform: translateX(105%);"
     document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
@@ -846,9 +844,9 @@ document.querySelector(".CategorieMenu1").addEventListener("click", ChoixMenu1)
 document.querySelector(".CategorieMenu2").addEventListener("click", ChoixMenu2)
 document.querySelector(".CategorieMenu3").addEventListener("click", ChoixMenu3)
 
-
+// Je change la page en fonction du choix fait dans le menu pour faire apparaitre les différente partie et je fais disparaitre le menu
+// Ici je fais apparaitre la partie centrale
 function ChoixMenu1() {
-    console.log("CHOIX 1")
     document.querySelector(".PartieGauche").style = "display: none;"
     document.querySelector(".PartieDroite").style = "display: none;"
     document.querySelector(".PartieCentre").style = "display: block;"
@@ -856,8 +854,8 @@ function ChoixMenu1() {
     document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
 }
 
+// Ici je fais apparaitre la partie de gauche
 function ChoixMenu2() {
-    console.log("CHOIX 2")
     document.querySelector(".PartieGauche").style = "display: block;"
     document.querySelector(".PartieDroite").style = "display: none;"
     document.querySelector(".PartieCentre").style = "display: none;"
@@ -865,8 +863,8 @@ function ChoixMenu2() {
     document.querySelector(".CacheMenu").style = "display: none; opacity: 0%;"
 }
 
+// Ici je fais apparaitre la partie de droite
 function ChoixMenu3() {
-    console.log("CHOIX 3")
     document.querySelector(".PartieGauche").style = "display: none;"
     document.querySelector(".PartieDroite").style = "display: block;"
     document.querySelector(".PartieCentre").style = "display: none;"
