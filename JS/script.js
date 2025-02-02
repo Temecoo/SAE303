@@ -636,33 +636,54 @@ function ComparaisonDesChampionsChoisit() {
 
 // On fait les hover des graph des perso pour que l'on puisse voir ce que représente les stat pour tout le monde en passant la sourie par dessus
 function ActualisationDeLaPage() {
-    document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
-        element.addEventListener("mouseover", HoverDuGraphArrive)
-    });
+    if (innerWidth > 1300) {
+        document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+            element.addEventListener("mouseover", HoverDuGraphArrive)
+        });
 
-    document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
-        element.addEventListener("mouseover", HoverDuGraphArrive)
-    });
+        document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+            element.addEventListener("mouseover", HoverDuGraphArrive)
+        });
 
-    document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
-        element.addEventListener("mouseover", HoverDuGraphArriveText)
-    });
+        document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+            element.addEventListener("mouseover", HoverDuGraphArriveText)
+        });
 
-    document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
-        element.addEventListener("mouseleave", HoverDuGraphPart)
-    });
+        document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+            element.addEventListener("mouseleave", HoverDuGraphPart)
+        });
 
-    document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
-        element.addEventListener("mouseleave", HoverDuGraphPart)
-    });
+        document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+            element.addEventListener("mouseleave", HoverDuGraphPart)
+        });
 
-    document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
-        element.addEventListener("mouseleave", HoverDuGraphPart)
-    });
+        document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+            element.addEventListener("mouseleave", HoverDuGraphPart)
+        });
+    }
+    else {
+        document.querySelectorAll(".GraphDesPersoGlobal>path").forEach(element => {
+            element.addEventListener("click", HoverDuGraphArrive)
+        });
+
+        document.querySelectorAll(".GraphDesPersoGlobal>circle").forEach(element => {
+            element.addEventListener("click", HoverDuGraphArrive)
+        });
+
+        document.querySelectorAll(".GraphDesPersoGlobal>text").forEach(element => {
+            element.addEventListener("click", HoverDuGraphArriveText)
+        });
+
+        if (document.querySelector(".afficher"))
+        document.querySelector(".afficher").addEventListener("click", HoverDuGraphPart)
+    }
 }
 
 // On récupère plusieurs information en regardant les parents de l'endroit où l'on est, j'ai pas réussi a faire plus opti mais ça marche donc bon
-function HoverDuGraphArrive() {
+function HoverDuGraphArrive(event) {
+    if (innerWidth < 1300) {
+        event.stopPropagation()
+    }
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
     let LaStat = this.classList[0]
@@ -686,10 +707,14 @@ function HoverDuGraphArrive() {
             EcritureDuHover(champion, LaStat, LeHover)
         }
     })
+    ActualisationDeLaPage()
 }
 
 // La même chose que la fonction au dessus mais si la sourie passe par dessus du texte et pas la barre car ça change un peu la ligne des parents a suivre
-function HoverDuGraphArriveText() {
+function HoverDuGraphArriveText(event) {
+    if (innerWidth < 1300) {
+        event.stopPropagation()
+    }
     let LeHover = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].children[1]
     LePersoSéléctionné = this.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].className
     let LaStat = this.previousSibling.classList[0]
@@ -699,10 +724,14 @@ function HoverDuGraphArriveText() {
             EcritureDuHover(champion, LaStat, LeHover)
         }
     })
+    ActualisationDeLaPage()
 }
 
 // La vérification est juste pour que ça ne soit pas lancé au passage par dessus la barre qui fait la séparation entre le positif et le négatif
-function HoverDuGraphPart() {
+function HoverDuGraphPart(event) {
+    if (innerWidth < 1300) {
+        event.stopPropagation()
+    }
     if (this.classList[0] != undefined) {
         document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
     }
