@@ -675,7 +675,10 @@ function ActualisationDeLaPage() {
         });
 
         if (document.querySelector(".afficher"))
-        document.querySelector(".afficher").addEventListener("click", HoverDuGraphPart)
+            document.querySelector(".afficher").addEventListener("click", HoverDuGraphPart)
+
+        if (document.querySelector(".LeHoverDuGraphAffiche"))
+            document.querySelector(".LeHoverDuGraphAffiche").addEventListener("click", HoverDuGraphPart)
     }
 }
 
@@ -733,6 +736,7 @@ function HoverDuGraphPart(event) {
         event.stopPropagation()
     }
     if (this.classList[0] != undefined) {
+        if (document.querySelector(".LeHoverDuGraphAffiche"))
         document.querySelector(".LeHoverDuGraphAffiche").classList.remove("LeHoverDuGraphAffiche");
     }
 }
