@@ -867,11 +867,7 @@ polyline:nth-child(2) {
     .afficher>.ChoixSelectionPersonnage{
         width: 100%;
     }
-
-    .LeHoverDuGraphAffiche{
-        grid-column: 1 / 3;
-    }
-
+    
     .RolePersonnageSelectionne {
         height: 100%;
         width: 200px;
