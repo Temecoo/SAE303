@@ -589,7 +589,7 @@ polyline:nth-child(2) {
 
 /* Style pour ecran pas large pour que ce qui ne bouge pas dans la partie centrale ne se rentre pas dedans */
 
-@media screen and (max-width: 1450px){
+@media screen and (max-width: 1450px) {
     .TitrePartieCentre {
         margin: 0px;
         font-size: 28px;
@@ -899,7 +899,7 @@ polyline:nth-child(2) {
     }
 
     /* Les pointillet sont moins gros sur le graph de comparaison de deux personnages */
-    
+
     polyline:nth-child(2) {
         stroke-dasharray: 15 10;
     }

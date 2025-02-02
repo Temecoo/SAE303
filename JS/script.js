@@ -567,7 +567,7 @@ function ComparaisonDesChampionsChoisit() {
                     <polyline points="`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        if (stat != "attackspeed"){
+        if (stat != "attackspeed") {
             output += (compteur * TailleGraphiqueLargeur) + "," + (valeur * Ratio) + ", "
         }
         else {
@@ -579,7 +579,7 @@ function ComparaisonDesChampionsChoisit() {
     output += `" style="fill:none;stroke:#0b550b;stroke-width:3" /><polyline points="`
 
     Object.entries(StatPersoSelectionne2).forEach(([stat2, valeur2]) => {
-        if (stat2 != "attackspeed"){
+        if (stat2 != "attackspeed") {
             output += (compteur2 * TailleGraphiqueLargeur) + "," + (valeur2 * Ratio) + ", "
         }
         else {
@@ -737,6 +737,7 @@ function DefinitionTaillePage() {
     }
     else if (CategorieDeLaPage == "COMPARAISON" && PersonnageComparaison1 != "" && PersonnageComparaison2 != "") {
 
+        ComparaisonDesChampionsChoisit();
         document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique + 8);
         document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
 
@@ -767,7 +768,6 @@ function ActualisationDeLaPageComparaison() {
         element.addEventListener("mouseleave", HoverDesPointsComparatifsPart)
         element.addEventListener("mouseover", HoverDesPointsComparatifs)
     })
-
 }
 
 // Je fais apparaitre a l'intérieur du cercle la phrase qui correspond a la couleur par dessus laquelle la sourie est et les stats ont été calculé plus haute
