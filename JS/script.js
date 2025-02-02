@@ -217,7 +217,6 @@ function DifferenceGraphique(champion) {
                 else if (Math.round(value - valeur) < 0) {
                     output += "<path d='M3 394V394 788' stroke='#660000' stroke-width='32' pathLength='100' class='" + key + "' style='stroke-dasharray:" + (Math.abs(value - valeur) * 100 / valeur) + " " + (100 - (Math.abs(value - valeur) * 100 / valeur)) + "; transform: translateX(" + (7.5 + 4.5 * compteur) + "%) translateY(2px);'/>"
                     output += "<text class='TitreBarreGraphique' x='0' y='0' font-family='Montserrat' font-size='28px' text-anchor='end' style='transform: translateX(" + (7.5 + 4.5 * compteur) + "%) rotate(270deg) translateX(-404px);'>" + DefStat["Traduction"] + "</text>"
-                    console.log(document.querySelector(".TitreBarreGraphique"))
                 }
 
             }
@@ -528,8 +527,6 @@ function VueComparaisonChampion() {
 
 // Calcule de la zone d'affichage
 function ComparaisonDesChampionsChoisit() {
-    console.log(Object.entries(StatPersoSelectionne1))
-    console.log(Object.entries(StatPersoSelectionne2))
     let compteur = 1;
     let compteur2 = 1;
     let compteur3 = 1;
@@ -538,7 +535,7 @@ function ComparaisonDesChampionsChoisit() {
     Personnage1Compteur = 0
     Personnage2Compteur = 0
     PersonnageEgalitéCompteur = 0
-    let TailleGraphiqueLargeur
+    let TailleGraphiqueLargeur = 0
     if (TailleGraphique == 0) {
         TailleGraphique = (document.querySelector(".ComparaisonDesPersonnageGlobal").getBoundingClientRect().bottom - document.querySelector(".VueComparaisonChampion").getBoundingClientRect().bottom - 100);
     }
@@ -570,14 +567,24 @@ function ComparaisonDesChampionsChoisit() {
                     <polyline points="`
 
     Object.entries(StatPersoSelectionne1).forEach(([stat, valeur]) => {
-        output += (compteur * TailleGraphiqueLargeur) + "," + (valeur * Ratio) + ", "
+        if (stat != "attackspeed"){
+            output += (compteur * TailleGraphiqueLargeur) + "," + (valeur * Ratio) + ", "
+        }
+        else {
+            output += (compteur * TailleGraphiqueLargeur) + "," + (valeur * Ratio) + ""
+        }
         compteur++
         StatPersoSelectionneGlobal[stat] = valeur
     })
     output += `" style="fill:none;stroke:#0b550b;stroke-width:3" /><polyline points="`
 
     Object.entries(StatPersoSelectionne2).forEach(([stat2, valeur2]) => {
-        output += (compteur2 * TailleGraphiqueLargeur) + "," + (valeur2 * Ratio) + ", "
+        if (stat2 != "attackspeed"){
+            output += (compteur2 * TailleGraphiqueLargeur) + "," + (valeur2 * Ratio) + ", "
+        }
+        else {
+            output += (compteur2 * TailleGraphiqueLargeur) + "," + (valeur2 * Ratio) + ""
+        }
         compteur2++
 
         Object.entries(StatPersoSelectionneGlobal).forEach(([stat, valeur]) => {
@@ -600,9 +607,6 @@ function ComparaisonDesChampionsChoisit() {
         compteur4++
     })
     output += `</svg></div>`
-
-    console.log(Object.entries(StatPersoSelectionneGlobal))
-
     output += `<div class="RondDeLaComparaison"><div class="HoverComparatif"></div><svg class="RondComparatif" width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">`
 
     // puis on compte combien de stat sont supérieur chez chaque champions et combien sont a égalité
@@ -627,7 +631,6 @@ function ComparaisonDesChampionsChoisit() {
                         stroke-dasharray="${PersonnageEgalitéCompteur} ${20 - PersonnageEgalitéCompteur}" pathLength="20" stroke-dashoffset="${-1 * (Personnage1Compteur + Personnage2Compteur)}" fill="none"/>
                     <foreignObject x="0" y="45" width="100%" height="100%"><div class="DansLeRondDeLaComparaison"></div></foreignObject>`
     output += `</svg></div>`
-
     return output
 }
 
@@ -728,8 +731,6 @@ function DefinitionTaillePage() {
         NombreTailleVertical = Math.floor(window.innerHeight / 25) * 25 - DebutDeLaZone;
     }
 
-    console.log(NombreTailleVertical)
-
     // Modification de la taille de la zone du milieu ou on peut scroll
     if (CategorieDeLaPage == "CHAMPIONS") {
         document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
@@ -737,6 +738,7 @@ function DefinitionTaillePage() {
     else if (CategorieDeLaPage == "COMPARAISON" && PersonnageComparaison1 != "" && PersonnageComparaison2 != "") {
 
         document.querySelector(".SVGDeLaComparaison").setAttribute("height", TailleGraphique + 8);
+        document.querySelector(".ScrollHere").style = "height:" + NombreTailleVertical + "px";
 
         ActualisationDeLaPageComparaison()
     }
@@ -765,6 +767,7 @@ function ActualisationDeLaPageComparaison() {
         element.addEventListener("mouseleave", HoverDesPointsComparatifsPart)
         element.addEventListener("mouseover", HoverDesPointsComparatifs)
     })
+
 }
 
 // Je fais apparaitre a l'intérieur du cercle la phrase qui correspond a la couleur par dessus laquelle la sourie est et les stats ont été calculé plus haute
