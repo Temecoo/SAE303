@@ -628,6 +628,9 @@ polyline:nth-child(2) {
 /* Style pour tablette */
 
 @media screen and (max-width: 1300px) {
+
+    /* Remise en page de la partie centrale pour la tablette */
+
     .TitrePartieCentre {
         font-family: Montserrat-bold;
         cursor: pointer;
@@ -640,6 +643,8 @@ polyline:nth-child(2) {
         justify-content: space-between;
     }
 
+    /* Je change la mise en page du compteur des rôles */
+
     .CompteurRoleGlobal {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -649,6 +654,8 @@ polyline:nth-child(2) {
         transform: translateY(-10%);
     }
 
+    /* J'enlève ce qui était dans le header que je veux pas dans ce mode */
+
     .CompterChampions {
         display: none;
     }
@@ -656,6 +663,8 @@ polyline:nth-child(2) {
     .HeaderCategories {
         display: none;
     }
+
+    /* Et je les replace dans la partie de gauche */
 
     .HeaderCategories2 {
         display: flex;
@@ -685,6 +694,8 @@ polyline:nth-child(2) {
         margin-top: 4px;
         margin-bottom: 4px;
     }
+
+    /* Le menu qui s'ouvre quand on clic sur les trois barres */
 
     .MenuDuCote {
         position: fixed;
@@ -722,6 +733,8 @@ polyline:nth-child(2) {
         transform: translateX(55px) translateY(16px);
     }
 
+    /* Je fais en sorte qu'on voit que la partie centrale */
+
     .PartieGauche {
         display: none;
         grid-column: 1 / 4;
@@ -752,10 +765,14 @@ polyline:nth-child(2) {
         height: 100%;
     }
 
+    /* je modifie un peu le hover pour qu'il soit pas trop petit sur tablette et mobile et le replace */
+
     .HoverComparatif {
         width: 25%;
         transform: translateX(-25%);
     }
+
+    /* j'enlève le background-color bleu très foncé sur tout le monde et leur met un background-color bleu foncé mais pas très */
 
     .PartieGauche {
         background-color: #000121;
@@ -790,6 +807,8 @@ polyline:nth-child(2) {
     .HeaderTablette {
         width: 10%;
     }
+
+    /* je refait les titres de la partie centrale pour que ça prenne un peu moins de place */
 
     .TitreDifferentePartie {
         flex-direction: column;
@@ -827,9 +846,13 @@ polyline:nth-child(2) {
         width: 15%;
     }
 
+    /* remise en page de la partie de droite */
+
     .MoyenneDesStats {
         padding-bottom: 32px;
     }
+
+    /* je baisse un peu la taille des images des champions pour que ça fasse pas trop gros sur mobile */
 
     .personnage {
         display: grid;
@@ -856,6 +879,8 @@ polyline:nth-child(2) {
         margin-top: 16px;
     }
 
+    /* Le graphique et le rond sont désormais l'un au dessus de l'autre dans la partie comparaison de la page */
+
     .PartieComparaisonGlobal {
         display: grid;
         grid-template-rows: auto auto;
@@ -871,9 +896,10 @@ polyline:nth-child(2) {
         position: initial;
         margin-top: 8px;
         margin-bottom: 8px;
-        /* display: block; */
     }
 
+    /* Les pointillet sont moins gros sur le graph de comparaison de deux personnages */
+    
     polyline:nth-child(2) {
         stroke-dasharray: 15 10;
     }
